@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../util/subtask_tile.dart';
+import '../utils/subtask_tile.dart';
 
 class AllTasks extends StatelessWidget {
   const AllTasks({super.key});
@@ -11,7 +11,7 @@ class AllTasks extends StatelessWidget {
       child: ListView(
         children: [
           TaskTile(
-            taskName: 'Meeting about the previous task',
+            taskName: 'Meeting about',
             endTime: DateTime(2023, 7, 23, 8, 00),
           ),
           TaskTile(
