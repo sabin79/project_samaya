@@ -21,9 +21,7 @@ class _TaskTabsState extends State<TaskTabs> with TickerProviderStateMixin {
             controller: tabController,
             indicatorColor: Colors.green,
             tabs: const [
-              Tab(
-                text: 'All task',
-              ),
+              Tab(text: 'All task'),
               Tab(
                 text: " going on",
               ),
