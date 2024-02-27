@@ -86,16 +86,20 @@ class AddNewTask extends StatelessWidget {
                     ),
                   ),
                   DropdownButtonFormField(
-                    items: dropDownItems
-                        .map((e) => DropdownMenuItem(child: Text(e)))
-                        .toList(),
+                    value: newTaskController.selected.value.isEmpty
+                        ? newTaskController.selected.value
+                        : null,
+                    onChanged: (newvalue) {
+                      newTaskController.setSelected(newvalue.toString());
+                    },
+                    items: dropDownItems.map((item) {
+                      return DropdownMenuItem<String>(
+                          value: item, child: Text(item));
+                    }).toList(),
                     hint: Text(
                       "Choose Priority",
                       style: GoogleFonts.ubuntu(),
                     ),
-                    onChanged: (newvalue) {
-                      newTaskController.setSelected(newvalue.toString());
-                    },
                   ),
                   const SizedBox(
                     height: 0.015,

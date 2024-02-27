@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaya/view/utils/main_task_card.dart';
+import 'package:project_samaya/view/utils/task/main_task_card.dart';
 
 class TaskGrid extends StatelessWidget {
   const TaskGrid({super.key});

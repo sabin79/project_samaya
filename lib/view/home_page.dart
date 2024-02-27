@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
-import 'package:project_samaya/view/utils/main_task_grid.dart';
-import 'package:project_samaya/view/utils/subtask_tab.dart';
+import 'package:project_samaya/view/utils/task/main_task_grid.dart';
+import 'package:project_samaya/view/utils/task/subtask_tab.dart';
 
 import 'add_new_task.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:project_samaya/view/task_overview_page.dart';
+import 'package:project_samaya/view/utils/task/task_overview_page.dart';
 
 class TaskCard extends StatelessWidget {
   double percentage;
