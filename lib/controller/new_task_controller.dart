@@ -14,7 +14,7 @@ class NewTaskController extends GetxController {
   TextEditingController description = TextEditingController();
 
   void setSelected(String value) {
-    selected.value = value;
+    selected = value.toString().obs;
   }
 
   chooseDate() async {

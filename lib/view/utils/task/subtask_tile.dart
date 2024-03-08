@@ -46,51 +46,42 @@ class _TaskTileState extends State<TaskTile> {
                   const SizedBox(
                     height: 15,
                   ),
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Expanded(
-                            flex: 1,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(9),
+                      child: SingleChildScrollView(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.schedule,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(
-                                      width: 6,
-                                    ),
-                                    Text(DateFormat.jm().format(widget.endTime))
-                                  ],
+                                const Icon(
+                                  Icons.schedule,
+                                  size: 16,
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6, vertical: 4),
-                                    child: widget.curentTime
-                                            .isAfter(widget.endTime)
-                                        ? const TaskCompleted()
-                                        : const TaskInProgress(),
-                                  ),
-                                )
+                                const SizedBox(
+                                  width: 6,
+                                ),
+                                Text(DateFormat.jm().format(widget.endTime))
                               ],
                             ),
-                          ),
+                            const SizedBox(
+                              width: 40,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: widget.curentTime.isAfter(widget.endTime)
+                                  ? const TaskCompleted()
+                                  : const TaskInProgress(),
+                            )
+                          ],
                         ),
                       ),
                     ),

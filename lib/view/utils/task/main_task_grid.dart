@@ -9,7 +9,10 @@ class TaskGrid extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12),
+        padding: const EdgeInsets.only(
+          left: 12,
+          right: 30,
+        ),
         child: Row(
           children: [
             TaskCard(

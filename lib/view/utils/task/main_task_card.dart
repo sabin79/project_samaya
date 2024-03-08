@@ -35,14 +35,15 @@ class TaskCard extends StatelessWidget {
               "sTime": startTime
             })),
         child: Container(
-          height: h * 0.3,
+          height: h * 0.37,
           width: w * 0.9,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 18, top: 18, right: 18),
+            padding:
+                const EdgeInsets.only(left: 18, top: 18, right: 18, bottom: 5),
             child: Column(
               children: [
                 Container(

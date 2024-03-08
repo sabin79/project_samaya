@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaya/view/task_pages/all_task.dart';
-import 'package:project_samaya/view/task_pages/completed.dart';
-import 'package:project_samaya/view/task_pages/on_going_task.dart';
+import 'package:project_samaya/view/utils/task_pages/all_task.dart';
+import 'package:project_samaya/view/utils/task_pages/completed.dart';
+import 'package:project_samaya/view/utils/task_pages/on_going_task.dart';
 
 class TaskTabs extends StatefulWidget {
   const TaskTabs({super.key});
@@ -13,7 +13,7 @@ class TaskTabs extends StatefulWidget {
 class _TaskTabsState extends State<TaskTabs> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController tabController = TabController(length: 2, vsync: this);
+    TabController tabController = TabController(length: 3, vsync: this);
     return Expanded(
       child: Column(
         children: [
@@ -34,7 +34,7 @@ class _TaskTabsState extends State<TaskTabs> with TickerProviderStateMixin {
               child: TabBarView(controller: tabController, children: const [
             AllTasks(),
             OnGoingTask(),
-            CompletedTasks()
+            CompletedTasks(),
           ]))
         ],
       ),

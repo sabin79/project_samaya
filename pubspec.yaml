@@ -41,6 +41,9 @@ dependencies:
   google_fonts: ^6.1.0
   percent_indicator: ^4.2.3
   syncfusion_flutter_calendar: ^24.2.8
+  flutter_svg: ^2.0.10+1
+  firebase_auth: ^4.16.0
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
