@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,10 @@ class UserRegistrationPage extends StatelessWidget {
     var isPasswordHidden = true.obs;
     final userEmail = TextEditingController();
     final userPassword = TextEditingController();
+    final userName = TextEditingController();
+
+    late FirebaseAuth auth;
+    final formkey = GlobalKey<FormState>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -66,6 +71,7 @@ class UserRegistrationPage extends StatelessWidget {
                 children: [
                   //NAME FIELD
                   TextField(
+                    controller: userName,
                     decoration: InputDecoration(
                         labelText: 'Your Name',
                         prefixIcon: const Icon(
@@ -84,7 +90,7 @@ class UserRegistrationPage extends StatelessWidget {
                     height: 15,
                   ),
                   //EMAIL TEXTFIELD
-                  TextField(
+                  TextFormField(
                     controller: userEmail,
                     decoration: InputDecoration(
                         labelText: 'Email',
@@ -106,7 +112,7 @@ class UserRegistrationPage extends StatelessWidget {
 
                   //PASSWORD TEXTFIELD
                   Obx(
-                    () => TextField(
+                    () => TextFormField(
                       controller: userPassword,
                       obscureText: isPasswordHidden.value,
                       decoration: InputDecoration(
