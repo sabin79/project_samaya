@@ -49,8 +49,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
               height: height * 0.35,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/loginSplash.png'),
-                    fit: BoxFit.cover),
+                    image: AssetImage('assects/login.png'), fit: BoxFit.cover),
               ),
               child: SafeArea(
                 child: Padding(
