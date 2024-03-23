@@ -6,16 +6,12 @@ import 'package:project_samaya/firebase_options.dart';
 import 'view/bottom_nav_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'view/user_authentication/user_login_page.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-//  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-//       .then((value) => Get.put(AuthController()));
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(AuthController()));
   runApp(const MyApp());
 }
 
@@ -27,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: UserLoginPage(),
+      home: NavigationPage(),
     );
   }
 }

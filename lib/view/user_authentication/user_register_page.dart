@@ -25,7 +25,7 @@ class UserRegistrationPage extends StatelessWidget {
               height: height * 0.35,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/loginSplash.png'),
+                    image: AssetImage('assets/loginSplash.png'),
                     fit: BoxFit.cover),
               ),
               child: SafeArea(
@@ -42,7 +42,7 @@ class UserRegistrationPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Taskify',
+                        'Samaya',
                         style: GoogleFonts.bebasNeue(
                             color: Colors.white, fontSize: 55),
                       ),

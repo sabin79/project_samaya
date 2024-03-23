@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_samaya/view/home_page.dart';
 import '../view/bottom_nav_bar.dart';
 import '../view/user_authentication/user_login_page.dart';
 
@@ -41,6 +42,7 @@ class AuthController extends GetxController {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      //  Get.offAll(() => const HomePage());
     } catch (e) {
       Get.snackbar(
         "Problem Occurred",

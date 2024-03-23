@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
+import '../controller/auth_controller.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -86,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: EdgeInsets.symmetric(
                       horizontal: w * 0.25, vertical: h * 0.12),
                   child: GestureDetector(
-                    // onTap: () => AuthController().logOutUser(),
+                    onTap: () => AuthController().logOutUser(),
                     child: Container(
                         padding: const EdgeInsets.all(14.0),
                         decoration: BoxDecoration(

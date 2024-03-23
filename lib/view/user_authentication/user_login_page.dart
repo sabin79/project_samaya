@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,17 +7,39 @@ import 'package:get/get.dart';
 import '../../controller/auth_controller.dart';
 import 'user_register_page.dart';
 
-class UserLoginPage extends StatelessWidget {
+class UserLoginPage extends StatefulWidget {
   const UserLoginPage({super.key});
+
+  @override
+  State<UserLoginPage> createState() => _UserLoginPageState();
+}
+
+class _UserLoginPageState extends State<UserLoginPage> {
+  final userEmail = TextEditingController();
+  final userPassword = TextEditingController();
+  var isPasswordHidden = true.obs;
+  late FirebaseAuth auth;
+  final _formkey = GlobalKey<FormState>();
+
+  bool validate_save() {
+    final form = _formkey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    auth = FirebaseAuth.instance;
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    final userEmail = TextEditingController();
-    final userPassword = TextEditingController();
-    var isPasswordHidden = true.obs;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -66,22 +89,23 @@ class UserLoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   //EMAIL TEXTFIELD
-                  TextField(
-                    controller: userEmail,
-                    decoration: InputDecoration(
-                        labelText: 'Email',
-                        prefixIcon: const Icon(
-                          Icons.email_outlined,
+                  Obx(() => TextField(
+                        controller: userEmail,
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          prefixIcon: const Icon(
+                            Icons.email_outlined,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade300)),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey.shade300),
+                          ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.grey.shade300)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide:
-                                BorderSide(color: Colors.grey.shade300))),
-                  ),
+                      )),
                   const SizedBox(
                     height: 18,
                   ),
