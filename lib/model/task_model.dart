@@ -4,7 +4,8 @@ class MainTaskModel {
   String? mtDesc;
   DateTime? endTime;
   DateTime? endDate;
-  List<SubtaskModel>? subtask;
+
+  int? remind;
 
   MainTaskModel(
       {this.mtTag,
@@ -12,12 +13,5 @@ class MainTaskModel {
       this.mtDesc,
       this.endDate,
       this.endTime,
-      this.subtask});
-}
-
-class SubtaskModel {
-  String? stTitle;
-  DateTime? endTime;
-
-  SubtaskModel({this.stTitle, this.endTime});
+      this.remind});
 }

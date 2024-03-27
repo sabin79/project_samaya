@@ -1,19 +1,110 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:project_samaya/controller/auth_controller.dart';
 
 import '../controller/new_task_controller.dart';
+import 'home_page.dart';
+import 'utils/input_field.dart';
 
-class AddNewTask extends StatelessWidget {
-  const AddNewTask({super.key});
+class AddNewTask extends StatefulWidget {
+  const AddNewTask({
+    super.key,
+  });
+
+  @override
+  State<AddNewTask> createState() => _AddNewTaskState();
+}
+
+class _AddNewTaskState extends State<AddNewTask> {
+  final formkey = GlobalKey<FormState>();
+  final User user = FirebaseAuth.instance.currentUser!;
+  String taskname = '';
+  String tagname = '';
+  String enddateandtime = '';
+
+  String choosedateandtime = '';
+  String descriptionname = '';
+  String remindname = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCurrentUser();
+  }
+
+  bool isLoggedIn() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<void> addData(user) async {
+    if (isLoggedIn()) {
+      FirebaseFirestore.instance
+          .collection('Blood Request Details')
+          .doc(user['uid'])
+          .set(user)
+          .catchError((e) {
+        print(e);
+      });
+    } else {
+      print('You need to be logged In');
+    }
+  }
+
+  Future<void> _loadCurrentUser() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      user;
+    });
+  }
+
+  Future<void> dialogTrigger(BuildContext context) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Success'),
+          content: const Text('Task Added Successfully'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                //  formkey.currentState?.reset();
+                Navigator.pop(context);
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              child: const Icon(
+                Icons.arrow_forward,
+                color: Color.fromARGB(1000, 221, 46, 68),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     var newTaskController = Get.put(NewTaskController());
     //   String selectedRepeat = 'None';
 
+    // int selectedRemind = 5;
+    // List<int> remindList = [
+    //   5,
+    //   10,
+    //   15,
+    //   20,
+    // ];
     List<String> dropDownItems = ["High Priority", "Low Priority"];
 
     double w = MediaQuery.of(context).size.width;
@@ -40,38 +131,23 @@ class AddNewTask extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 8.0, top: 8, left: 3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Titile",
-                          style: GoogleFonts.ubuntu(
-                              color: Colors.grey.shade500, fontSize: 17),
-                        )
-                      ],
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  key: formkey,
+                  child: Column(
+                    children: [
+                      InputField(
+                          title: "Title",
+                          controller: newTaskController.title,
+                          hint: 'Enter a title here',
+                          widget: const Text('')),
+                      const SizedBox(
+                        height: 0.015,
+                      ),
+                    ],
                   ),
-                  TextField(
-                    controller: newTaskController.title,
-                    decoration: InputDecoration(
-                        focusColor: const Color.fromARGB(255, 78, 128, 255),
-                        suffixIcon: const Icon(IconlyLight.edit),
-                        hintText: "Title",
-                        hintStyle: const TextStyle(fontSize: 15),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(13),
-                            borderSide:
-                                BorderSide(color: Colors.grey.shade500))),
-                  ),
-                  const SizedBox(
-                    height: 0.015,
-                  ),
-                ],
+                ),
               ),
               Column(
                 children: [
@@ -122,10 +198,11 @@ class AddNewTask extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("End date",
-                                  style: GoogleFonts.ubuntu(
-                                      color: Colors.grey.shade500,
-                                      fontSize: 13)),
+                              Text(
+                                "End date",
+                                style: GoogleFonts.ubuntu(
+                                    color: Colors.grey.shade500, fontSize: 13),
+                              ),
                             ],
                           ),
                         ),
@@ -145,7 +222,7 @@ class AddNewTask extends StatelessWidget {
                                         color: Colors.grey.shade500))),
                             onTap: () async {
                               FocusScope.of(context).requestFocus(FocusNode());
-                              newTaskController.chooseTime();
+                              newTaskController.chooseDate();
                             },
                           ),
                         ),
@@ -204,17 +281,13 @@ class AddNewTask extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 8.0, top: 8.0, left: 3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('Description',
-                            style: GoogleFonts.ubuntu(
-                                color: Colors.grey.shade500, fontSize: 13)),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Description',
+                          style: GoogleFonts.ubuntu(
+                              color: Colors.grey.shade500, fontSize: 13)),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -236,6 +309,66 @@ class AddNewTask extends StatelessWidget {
                   ),
                 ],
               ),
+              // Container(
+              //   padding: const EdgeInsets.only(top: 20.0),
+              //   child: DropdownButton(
+              //     hint: const Text(
+              //       'Please choose a Blood Group',
+              //       style: TextStyle(
+              //         color: Color.fromARGB(1000, 221, 46, 68),
+              //       ),
+              //     ),
+              //     iconSize: 40.0,
+              //     items: dropDownItems.map((val) {
+              //       return DropdownMenuItem<String>(
+              //         value: val,
+              //         child: Text(val),
+              //       );
+              //     }).toList(),
+              //     onChanged: (newValue) {
+              //       setState(() {
+              //         newTaskController.selected = newValue!;
+              //         dropDownItems;
+              //       });
+              //     },
+              //   ),
+              // ),
+              // InputField(
+              //   title: "Remind",
+              //   controller: TextEditingController(),
+              //   hint: "$selectedRemind minutes early",
+              //   widget: Row(
+              //     children: [
+              //       DropdownButton<String>(
+              //           value: selectedRemind.toString(),
+              //           icon: const Icon(
+              //             Icons.keyboard_arrow_down,
+              //             color: Colors.grey,
+              //           ),
+              //           iconSize: 32,
+              //           elevation: 4,
+              //           style: TextStyle(
+              //               fontSize: 16,
+              //               color: Get.isDarkMode
+              //                   ? Colors.grey[400]
+              //                   : Colors.grey[700]),
+              //           underline: Container(height: 0),
+              //           onChanged: (String? newValue) {
+              //             setState(() {
+              //               selectedRemind = int.parse(newValue!);
+              //             });
+              //           },
+              //           items: remindList
+              //               .map<DropdownMenuItem<String>>((int value) {
+              //             return DropdownMenuItem<String>(
+              //               value: value.toString(),
+              //               child: Text(value.toString()),
+              //             );
+              //           }).toList()),
+              //       const SizedBox(width: 6),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: h * 0.055,
               ),
@@ -249,11 +382,30 @@ class AddNewTask extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // Button action
+                  if (!formkey.currentState!.validate()) return;
+                  formkey.currentState!.save();
+                  final Map<String, dynamic> samayaDetails = {
+                    'uid': FirebaseAuth.instance.currentUser != null
+                        ? FirebaseAuth.instance.currentUser!.uid
+                        : '',
+                    'task': taskname,
+                    'tag': tagname,
+                    'end date': enddateandtime,
+                    'Choose time': choosedateandtime,
+                    'Description': descriptionname,
+                    'remind': remindname,
+                  };
+                  addData(samayaDetails).then((result) {
+                    dialogTrigger(context);
+                  }).catchError((e) {
+                    print(e);
+                  });
                 },
                 child: Text(
                   'Asign Task',
-                  style: GoogleFonts.ubuntu(),
+                  style: GoogleFonts.ubuntu(
+                    color: Colors.white,
+                  ),
                 ),
               )
             ],

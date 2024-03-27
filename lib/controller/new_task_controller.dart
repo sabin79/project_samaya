@@ -5,16 +5,18 @@ import 'package:intl/intl.dart';
 class NewTaskController extends GetxController {
   var selectedDate = DateTime.now().obs;
   var selectedTime = TimeOfDay.now().obs;
-
-  var selected = "".obs;
+  DateTime _selectedDate = DateTime.now();
+  var formattedDate;
+  String selected = "".obs.toString();
 
   TextEditingController title = TextEditingController();
   TextEditingController endDate = TextEditingController();
   TextEditingController endTime = TextEditingController();
   TextEditingController description = TextEditingController();
+  TextEditingController repeat = TextEditingController();
 
   void setSelected(String value) {
-    selected = value.toString().obs;
+    selected = value;
   }
 
   chooseDate() async {
@@ -43,5 +45,37 @@ class NewTaskController extends GetxController {
       selectedTime.value = pickedTime;
       endTime.text = pickedTime.format(Get.context!).toString();
     }
+  }
+
+  _getDateFromUser() async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: Get.context!,
+        initialDate: _selectedDate,
+        initialDatePickerMode: DatePickerMode.day,
+        firstDate: DateTime(2015),
+        lastDate: DateTime(2101));
+    if (pickedDate != null) {
+      // setState(() {
+      //   _selectedDate = pickedDate;
+      // });
+      _selectedDate = pickedDate;
+    }
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null && picked != selectedDate) {
+      // setState(() {
+      _selectedDate = picked;
+      // flag = 1;
+      // });
+    }
+    var date = DateTime.parse(selectedDate.toString());
+    formattedDate = "${date.day}-${date.month}-${date.year}";
   }
 }
