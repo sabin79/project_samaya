@@ -5,13 +5,11 @@ class MainTaskModel {
   DateTime? endTime;
   DateTime? endDate;
 
-  int? remind;
-
-  MainTaskModel(
-      {this.mtTag,
-      this.mtTitle,
-      this.mtDesc,
-      this.endDate,
-      this.endTime,
-      this.remind});
+  MainTaskModel({
+    this.mtTag,
+    this.mtTitle,
+    this.mtDesc,
+    this.endDate,
+    this.endTime,
+  });
 }

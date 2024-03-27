@@ -308,66 +308,6 @@ class _AddNewTaskState extends State<AddNewTask> {
                   ),
                 ],
               ),
-              // Container(
-              //   padding: const EdgeInsets.only(top: 20.0),
-              //   child: DropdownButton(
-              //     hint: const Text(
-              //       'Please choose a Blood Group',
-              //       style: TextStyle(
-              //         color: Color.fromARGB(1000, 221, 46, 68),
-              //       ),
-              //     ),
-              //     iconSize: 40.0,
-              //     items: dropDownItems.map((val) {
-              //       return DropdownMenuItem<String>(
-              //         value: val,
-              //         child: Text(val),
-              //       );
-              //     }).toList(),
-              //     onChanged: (newValue) {
-              //       setState(() {
-              //         newTaskController.selected = newValue!;
-              //         dropDownItems;
-              //       });
-              //     },
-              //   ),
-              // ),
-              InputField(
-                title: "Remind",
-                controller: TextEditingController(),
-                hint: "$selectedRemind minutes early",
-                widget: Row(
-                  children: [
-                    DropdownButton<String>(
-                        value: selectedRemind.toString(),
-                        icon: const Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.grey,
-                        ),
-                        iconSize: 32,
-                        elevation: 4,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Get.isDarkMode
-                                ? Colors.grey[400]
-                                : Colors.grey[700]),
-                        underline: Container(height: 0),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            selectedRemind = int.parse(newValue!);
-                          });
-                        },
-                        items: remindList
-                            .map<DropdownMenuItem<String>>((int value) {
-                          return DropdownMenuItem<String>(
-                            value: value.toString(),
-                            child: Text(value.toString()),
-                          );
-                        }).toList()),
-                    const SizedBox(width: 6),
-                  ],
-                ),
-              ),
               SizedBox(
                 height: h * 0.055,
               ),
@@ -388,11 +328,10 @@ class _AddNewTaskState extends State<AddNewTask> {
                         ? FirebaseAuth.instance.currentUser!.uid
                         : '',
                     'task': newTaskController.title.text,
-                    'tag': listitem,
+                    'tag': dropDownItems,
                     'enddate': newTaskController.endDate.text,
                     'Choosetime': newTaskController.endTime.text,
                     'Description': newTaskController.description.text,
-                    'remind': newTaskController.repeat.text,
                   };
                   addData(samayaDetails).then((result) {
                     dialogTrigger(context);

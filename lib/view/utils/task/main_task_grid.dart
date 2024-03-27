@@ -46,9 +46,9 @@ class _TaskGridState extends State<TaskGrid> {
                         taskTitle: "${snapshot.data?.docs[index]['task']}",
                         taskDescription:
                             "${snapshot.data?.docs[index]['Description']}",
-                        dueDate: "${snapshot.data?.docs[index]['end date']}",
+                        dueDate: "${snapshot.data?.docs[index]['enddate']}",
                         startTime:
-                            "${snapshot.data?.docs[index]['Choose time']}",
+                            "${snapshot.data?.docs[index]['Choosetime']}",
                       );
                     },
                   );
