@@ -9,7 +9,7 @@ import '../../controller/auth_controller.dart';
 import 'user_register_page.dart';
 
 class UserLoginPage extends StatelessWidget {
-  UserLoginPage({super.key});
+  const UserLoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -198,10 +198,10 @@ class UserLoginPage extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
-                                  'assets/google.svg',
-                                  height: height * 0.03,
-                                ),
+                                // SvgPicture.asset(
+                                //   'assets/google.svg',
+                                //   height: height * 0.03,
+                                // ),
                                 const SizedBox(
                                   width: 8.0,
                                 ),
@@ -213,31 +213,6 @@ class UserLoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(10),
-                        //       border: Border.all(color: Colors.grey.shade300)),
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.symmetric(
-                        //         vertical: 15.0, horizontal: 20.0),
-                        //     child: Row(
-                        //       mainAxisAlignment: MainAxisAlignment.center,
-                        //       children: [
-                        //         SvgPicture.asset(
-                        //           'assets/images/facebook.svg',
-                        //           height: height * 0.03,
-                        //         ),
-                        //         const SizedBox(
-                        //           width: 8.0,
-                        //         ),
-                        //         Text(
-                        //           'Facebook',
-                        //           style: GoogleFonts.ubuntu(),
-                        //         )
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                     SizedBox(

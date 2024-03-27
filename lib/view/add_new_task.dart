@@ -23,13 +23,6 @@ class AddNewTask extends StatefulWidget {
 class _AddNewTaskState extends State<AddNewTask> {
   final formkey = GlobalKey<FormState>();
   final User user = FirebaseAuth.instance.currentUser!;
-  // String taskname = '';
-  // String tagname = '';
-  // String enddateandtime = '';
-
-  // String choosedateandtime = '';
-  // String descriptionname = '';
-  // String remindname = '';
 
   @override
   void initState() {
@@ -97,15 +90,8 @@ class _AddNewTaskState extends State<AddNewTask> {
   Widget build(BuildContext context) {
     var newTaskController = Get.put(NewTaskController());
 
-    int selectedRemind = 5;
-    List<int> remindList = [
-      5,
-      10,
-      15,
-      20,
-    ];
     List<String> dropDownItems = ["High Priority", "Low Priority"];
-    List<String> listitem = [];
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
@@ -208,7 +194,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                         Padding(
                           padding: const EdgeInsets.only(left: 8),
                           child: TextField(
-                            controller: newTaskController.endTime,
+                            controller: newTaskController.endDate,
                             decoration: InputDecoration(
                                 focusColor:
                                     const Color.fromARGB(255, 78, 128, 255),

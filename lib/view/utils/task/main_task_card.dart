@@ -5,7 +5,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:project_samaya/view/utils/task/task_overview_page.dart';
 
 class TaskCard extends StatefulWidget {
-  // double percentage;
   String taskTag;
   String taskTitle;
   String taskDescription;
@@ -17,7 +16,6 @@ class TaskCard extends StatefulWidget {
       required this.taskTag,
       required this.taskTitle,
       required this.taskDescription,
-      //  required this.percentage,
       required this.dueDate,
       required this.startTime});
 
@@ -32,13 +30,15 @@ class _TaskCardState extends State<TaskCard> {
     double h = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-        onTap: (() => Get.to(const TaskOverviewPage(), arguments: {
-              "tags": widget.taskTag,
-              "title": widget.taskTitle,
-              "description": widget.taskDescription,
-              "sDate": widget.dueDate,
-              "sTime": widget.startTime
-            })),
+      onTap: (() => Get.to(const TaskOverviewPage(), arguments: {
+            "tags": widget.taskTag,
+            "title": widget.taskTitle,
+            "description": widget.taskDescription,
+            "sDate": widget.dueDate,
+            "sTime": widget.startTime
+          })),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
         child: Container(
           height: h * 0.37,
           width: w * 0.9,
@@ -87,16 +87,6 @@ class _TaskCardState extends State<TaskCard> {
                 const SizedBox(
                   height: 18,
                 ),
-                // LinearPercentIndicator(
-                //  // percent: percentage * 0.01,
-                //   progressColor: const Color.fromARGB(255, 42, 97, 238),
-                //   lineHeight: 8,
-                //   barRadius: const Radius.circular(15),
-                //   trailing: Text(
-                //     '$percentage %',
-                //     style: GoogleFonts.ubuntu(fontWeight: FontWeight.bold),
-                //   ),
-                // ),
                 const SizedBox(
                   height: 18,
                 ),
@@ -126,6 +116,8 @@ class _TaskCardState extends State<TaskCard> {
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

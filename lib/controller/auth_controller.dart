@@ -30,7 +30,7 @@ class AuthController extends GetxController {
 
   _initialScreen(User? user) {
     if (user == null) {
-      Get.offAll(() => UserLoginPage());
+      Get.offAll(() => const UserLoginPage());
     } else {
       Get.offAll(() => const NavigationPage());
     }
@@ -41,6 +41,7 @@ class AuthController extends GetxController {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
       //  Get.offAll(() => const HomePage());
     } catch (e) {
       print(e);

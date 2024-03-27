@@ -15,9 +15,9 @@ class _TaskGridState extends State<TaskGrid> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.37,
+          height: MediaQuery.of(context).size.height * 0.38,
           child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Samaya Users Details')
@@ -29,18 +29,7 @@ class _TaskGridState extends State<TaskGrid> {
                     itemCount: snapshot.data?.docs.length,
                     itemBuilder: (context, index) {
                       print(snapshot.data?.docs[index]);
-                      // return SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.25,
-                      //   child: Column(
-                      //     children: [
-                      //       Text("${snapshot.data?.docs[index]['tag'][0]}"),
-                      //       Text("${snapshot.data?.docs[index]['task']}"),
-                      //       Text("${snapshot.data?.docs[index]['Description']}"),
-                      //       Text("${snapshot.data?.docs[index]['end date']}"),
-                      //       Text("${snapshot.data?.docs[index]['Choose time']}"),
-                      //     ],
-                      //   ),
-                      // );
+
                       return TaskCard(
                         taskTag: "${snapshot.data?.docs[index]['tag'][0]}",
                         taskTitle: "${snapshot.data?.docs[index]['task']}",
@@ -62,7 +51,9 @@ class _TaskGridState extends State<TaskGrid> {
                   child: CircularProgressIndicator(),
                 );
               }
-              return Container();
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             },
           ),
         ),

@@ -1,15 +1,85 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/controller/register_controller.dart';
+import 'package:project_samaya/view/home_page.dart';
 import 'package:project_samaya/view/user_authentication/user_login_page.dart';
 
 import '../../controller/auth_controller.dart';
 
-class UserRegistrationPage extends StatelessWidget {
+class UserRegistrationPage extends StatefulWidget {
   const UserRegistrationPage({super.key});
+
+  @override
+  State<UserRegistrationPage> createState() => _UserRegistrationPageState();
+}
+
+class _UserRegistrationPageState extends State<UserRegistrationPage> {
+  final formkey = GlobalKey<FormState>();
+  User? users = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  bool isLoggedIn() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<void> addData(users) async {
+    if (isLoggedIn()) {
+      FirebaseFirestore.instance
+          .collection('Users')
+          .doc(users['uid'])
+          .set(users)
+          .catchError((e) {
+        print(e);
+      });
+    }
+  }
+
+  Future<void> _loadUser() async {
+    User? users = FirebaseAuth.instance.currentUser;
+    setState(() {
+      users;
+    });
+  }
+
+  Future<void> dialogTrigger(BuildContext context) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(' Login Success'),
+          content: const Text('Account has been created Successfully'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                //  formkey.currentState?.reset();
+                Navigator.pop(context);
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
+              },
+              child: const Icon(
+                Icons.arrow_forward,
+                color: Color.fromARGB(1000, 221, 46, 68),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,6 +251,25 @@ class UserRegistrationPage extends StatelessWidget {
                           Get.snackbar('Error', 'Password does not match',
                               snackPosition: SnackPosition.BOTTOM);
                         }
+                        if (!formkey.currentState!.validate()) return;
+                        formkey.currentState!.save();
+                        final Map<String, dynamic> userDetails = {
+                          'uid': FirebaseAuth.instance.currentUser != null
+                              ? FirebaseAuth.instance.currentUser!.uid
+                              : '',
+                          'email': registerController.userEmail.text,
+                          'password': registerController.userPassword.text,
+                          'name': registerController.userName.text
+                        };
+
+                        addData(userDetails).then((result) {
+                          dialogTrigger(context);
+                        }).catchError((e) {
+                          print(e);
+                        });
+                        // registerController.adduserDetails(
+                        //     registerController.userName.text,
+                        //     registerController.userEmail.text);
                       },
                       child: Container(
                         width: width * 0.8,
@@ -210,7 +299,8 @@ class UserRegistrationPage extends StatelessWidget {
                             children: [
                           TextSpan(
                               recognizer: TapGestureRecognizer()
-                                ..onTap = () => Get.off(() => UserLoginPage()),
+                                ..onTap =
+                                    () => Get.off(() => const UserLoginPage()),
                               text: " Login",
                               style: GoogleFonts.ubuntu(
                                   fontWeight: FontWeight.bold,

@@ -25,7 +25,7 @@ class _CalenderPageState extends State<CalenderPage> {
         ),
         body: Center(
           child: SfCalendar(
-            view: CalendarView.day,
+            view: CalendarView.week,
             todayHighlightColor: Colors.blue,
             showNavigationArrow: true,
           ),

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 class TaskTile extends StatefulWidget {
   final String taskName;
-  final DateTime endTime;
+  final endTime;
   final DateTime curentTime = DateTime.now();
   TaskTile({
     super.key,
