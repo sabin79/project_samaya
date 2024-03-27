@@ -13,7 +13,6 @@ class TaskGrid extends StatefulWidget {
 
 class _TaskGridState extends State<TaskGrid> {
   List<Map<String, dynamic>> taskList = [];
-  late Widget _child;
 
   @override
   void initState() {
@@ -24,7 +23,7 @@ class _TaskGridState extends State<TaskGrid> {
 
   Future<void> getDonors() async {
     await FirebaseFirestore.instance
-        .collection('Blood Request Details')
+        .collection('Samaya Users Details')
         .get()
         .then((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
@@ -34,14 +33,14 @@ class _TaskGridState extends State<TaskGrid> {
         print(taskList);
       }
     });
-    setState(() {
-      _child = mywidget();
-    });
+    // setState(() {
+    //   _child = mywidget();
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    return _child = mywidget();
+    return mywidget();
   }
 
   Widget mywidget() {

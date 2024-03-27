@@ -48,7 +48,7 @@ class _AddNewTaskState extends State<AddNewTask> {
   Future<void> addData(user) async {
     if (isLoggedIn()) {
       FirebaseFirestore.instance
-          .collection('TSamaya Users Details')
+          .collection('Samaya Users Details')
           .doc(user['uid'])
           .set(user)
           .catchError((e) {
@@ -106,7 +106,7 @@ class _AddNewTaskState extends State<AddNewTask> {
     //   20,
     // ];
     List<String> dropDownItems = ["High Priority", "Low Priority"];
-
+    List<String> listitem = [];
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
@@ -172,9 +172,9 @@ class _AddNewTaskState extends State<AddNewTask> {
 
                         newTaskController.setSelected(newvalue.toString());
                       },
-                      items: dropDownItems.map((item) {
+                      items: dropDownItems.map((listitem) {
                         return DropdownMenuItem<String>(
-                            value: item.toString(), child: Text(item));
+                            value: listitem.toString(), child: Text(listitem));
                       }).toList(),
                       hint: Text(
                         "Choose Priority",
@@ -389,7 +389,7 @@ class _AddNewTaskState extends State<AddNewTask> {
                         ? FirebaseAuth.instance.currentUser!.uid
                         : '',
                     'task': newTaskController.title.text,
-                    'tag': dropDownItems,
+                    'tag': listitem,
                     'end date': newTaskController.endDate.text,
                     'Choose time': newTaskController.endTime.text,
                     'Description': newTaskController.description.text,
