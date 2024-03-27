@@ -104,15 +104,15 @@ class TaskCompleted extends StatelessWidget {
     return const Row(
       children: [
         Text(
-          "Completd",
-          style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+          "Task Expired",
+          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
         ),
         SizedBox(
           width: 5,
         ),
         Icon(
           Icons.check_circle,
-          color: Colors.green,
+          color: Colors.red,
           size: 15,
         )
       ],
@@ -128,12 +128,11 @@ class TaskInProgress extends StatelessWidget {
     return const Row(
       children: [
         Text("On Processing",
-            style:
-                TextStyle(color: Colors.orange, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
         SizedBox(
           width: 5,
         ),
-        Icon(Icons.run_circle, color: Colors.orange, size: 15),
+        Icon(Icons.run_circle, color: Colors.blue, size: 15),
       ],
     );
   }

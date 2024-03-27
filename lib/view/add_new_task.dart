@@ -23,13 +23,13 @@ class AddNewTask extends StatefulWidget {
 class _AddNewTaskState extends State<AddNewTask> {
   final formkey = GlobalKey<FormState>();
   final User user = FirebaseAuth.instance.currentUser!;
-  String taskname = '';
-  String tagname = '';
-  String enddateandtime = '';
+  // String taskname = '';
+  // String tagname = '';
+  // String enddateandtime = '';
 
-  String choosedateandtime = '';
-  String descriptionname = '';
-  String remindname = '';
+  // String choosedateandtime = '';
+  // String descriptionname = '';
+  // String remindname = '';
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class _AddNewTaskState extends State<AddNewTask> {
   Future<void> addData(user) async {
     if (isLoggedIn()) {
       FirebaseFirestore.instance
-          .collection('Blood Request Details')
+          .collection('TSamaya Users Details')
           .doc(user['uid'])
           .set(user)
           .catchError((e) {
@@ -388,12 +388,12 @@ class _AddNewTaskState extends State<AddNewTask> {
                     'uid': FirebaseAuth.instance.currentUser != null
                         ? FirebaseAuth.instance.currentUser!.uid
                         : '',
-                    'task': taskname,
-                    'tag': tagname,
-                    'end date': enddateandtime,
-                    'Choose time': choosedateandtime,
-                    'Description': descriptionname,
-                    'remind': remindname,
+                    'task': newTaskController.title.text,
+                    'tag': dropDownItems,
+                    'end date': newTaskController.endDate.text,
+                    'Choose time': newTaskController.endTime.text,
+                    'Description': newTaskController.description.text,
+                    'remind': newTaskController.repeat.text,
                   };
                   addData(samayaDetails).then((result) {
                     dialogTrigger(context);

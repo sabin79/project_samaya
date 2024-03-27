@@ -207,7 +207,7 @@ class TaskOverviewPage extends StatelessWidget {
                                 children: [
                                   Icon(
                                     IconlyLight.calendar,
-                                    color: Colors.grey.shade400,
+                                    color: Colors.grey.shade700,
                                     size: 15,
                                   ),
                                   SizedBox(

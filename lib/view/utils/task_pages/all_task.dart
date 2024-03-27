@@ -12,7 +12,11 @@ class AllTasks extends StatelessWidget {
         children: [
           TaskTile(
             taskName: 'Meeting about',
-            endTime: DateTime(2023, 7, 23, 8, 00),
+            endTime: DateTime(
+              2024,
+              7,
+              23,
+            ),
           ),
           TaskTile(
             taskName: 'Meeting with the client',
@@ -20,7 +24,11 @@ class AllTasks extends StatelessWidget {
           ),
           TaskTile(
             taskName: 'Code the interface',
-            endTime: DateTime(2023, 7, 23, 15, 00),
+            endTime: DateTime(
+              2023,
+              7,
+              23,
+            ),
           ),
           //  TaskOverviewCard(),
         ],

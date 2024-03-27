@@ -20,7 +20,11 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 78, 128, 255),
         onPressed: (() => Get.to(const AddNewTask())),
-        child: const Icon(IconlyBold.edit),
+        child: const Icon(
+          IconlyBold.paper_plus,
+          color: Colors.white,
+          size: 35,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: SafeArea(
