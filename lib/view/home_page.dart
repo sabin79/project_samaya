@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
             ),
             const TaskGrid(),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             const TaskTabs(),
           ],

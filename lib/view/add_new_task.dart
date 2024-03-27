@@ -96,15 +96,14 @@ class _AddNewTaskState extends State<AddNewTask> {
   @override
   Widget build(BuildContext context) {
     var newTaskController = Get.put(NewTaskController());
-    //   String selectedRepeat = 'None';
 
-    // int selectedRemind = 5;
-    // List<int> remindList = [
-    //   5,
-    //   10,
-    //   15,
-    //   20,
-    // ];
+    int selectedRemind = 5;
+    List<int> remindList = [
+      5,
+      10,
+      15,
+      20,
+    ];
     List<String> dropDownItems = ["High Priority", "Low Priority"];
     List<String> listitem = [];
     double w = MediaQuery.of(context).size.width;
@@ -333,42 +332,42 @@ class _AddNewTaskState extends State<AddNewTask> {
               //     },
               //   ),
               // ),
-              // InputField(
-              //   title: "Remind",
-              //   controller: TextEditingController(),
-              //   hint: "$selectedRemind minutes early",
-              //   widget: Row(
-              //     children: [
-              //       DropdownButton<String>(
-              //           value: selectedRemind.toString(),
-              //           icon: const Icon(
-              //             Icons.keyboard_arrow_down,
-              //             color: Colors.grey,
-              //           ),
-              //           iconSize: 32,
-              //           elevation: 4,
-              //           style: TextStyle(
-              //               fontSize: 16,
-              //               color: Get.isDarkMode
-              //                   ? Colors.grey[400]
-              //                   : Colors.grey[700]),
-              //           underline: Container(height: 0),
-              //           onChanged: (String? newValue) {
-              //             setState(() {
-              //               selectedRemind = int.parse(newValue!);
-              //             });
-              //           },
-              //           items: remindList
-              //               .map<DropdownMenuItem<String>>((int value) {
-              //             return DropdownMenuItem<String>(
-              //               value: value.toString(),
-              //               child: Text(value.toString()),
-              //             );
-              //           }).toList()),
-              //       const SizedBox(width: 6),
-              //     ],
-              //   ),
-              // ),
+              InputField(
+                title: "Remind",
+                controller: TextEditingController(),
+                hint: "$selectedRemind minutes early",
+                widget: Row(
+                  children: [
+                    DropdownButton<String>(
+                        value: selectedRemind.toString(),
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.grey,
+                        ),
+                        iconSize: 32,
+                        elevation: 4,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Get.isDarkMode
+                                ? Colors.grey[400]
+                                : Colors.grey[700]),
+                        underline: Container(height: 0),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedRemind = int.parse(newValue!);
+                          });
+                        },
+                        items: remindList
+                            .map<DropdownMenuItem<String>>((int value) {
+                          return DropdownMenuItem<String>(
+                            value: value.toString(),
+                            child: Text(value.toString()),
+                          );
+                        }).toList()),
+                    const SizedBox(width: 6),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: h * 0.055,
               ),
@@ -390,8 +389,8 @@ class _AddNewTaskState extends State<AddNewTask> {
                         : '',
                     'task': newTaskController.title.text,
                     'tag': listitem,
-                    'end date': newTaskController.endDate.text,
-                    'Choose time': newTaskController.endTime.text,
+                    'enddate': newTaskController.endDate.text,
+                    'Choosetime': newTaskController.endTime.text,
                     'Description': newTaskController.description.text,
                     'remind': newTaskController.repeat.text,
                   };
