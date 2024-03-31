@@ -76,7 +76,7 @@ class InputField extends StatelessWidget {
                       ),
                     ),
                   ),
-                  widget ?? Container(),
+                  widget,
                 ],
               ),
             )
