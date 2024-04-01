@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/view/admin_dept/controller/add_user-controller.dart';
-import 'package:project_samaya/view/utils/input_field.dart';
+import 'package:project_samaya/widgets/input_field.dart';
 
 class AddUser extends StatelessWidget {
   final AddUserController controller = Get.put(AddUserController());

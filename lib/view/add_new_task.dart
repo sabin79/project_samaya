@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:project_samaya/controller/auth_controller.dart';
+import 'package:project_samaya/widgets/input_field.dart';
 
 import '../controller/new_task_controller.dart';
 import 'home_page.dart';
-import 'utils/input_field.dart';
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({
