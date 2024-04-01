@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/controller/login_controller.dart';
+import 'package:project_samaya/view/admin_dept/view/add_user.dart';
 import '../../controller/auth_controller.dart';
 import 'user_register_page.dart';
 
@@ -205,9 +206,14 @@ class UserLoginPage extends StatelessWidget {
                                 const SizedBox(
                                   width: 8.0,
                                 ),
-                                Text(
-                                  'Google',
-                                  style: GoogleFonts.ubuntu(),
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(() => AddUser());
+                                  },
+                                  child: Text(
+                                    'Google',
+                                    style: GoogleFonts.ubuntu(),
+                                  ),
                                 )
                               ],
                             ),
