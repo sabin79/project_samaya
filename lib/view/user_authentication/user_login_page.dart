@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/controller/login_controller.dart';
 import 'package:project_samaya/view/admin_dept/view/add_user.dart';
+import 'package:project_samaya/view/admin_dept/view/admin_panel.dart';
 import '../../controller/auth_controller.dart';
 import 'user_register_page.dart';
 
@@ -208,7 +209,7 @@ class UserLoginPage extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(() => AddUser());
+                                    Get.to(() => AdminHomePage());
                                   },
                                   child: Text(
                                     'Google',
