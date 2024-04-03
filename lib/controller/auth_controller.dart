@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../view/admin_dept/view/admin_panel.dart';
 import '../view/bottom_nav_bar.dart';
 import '../view/user_authentication/user_login_page.dart';
 
@@ -32,7 +33,7 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAll(() => const UserLoginPage());
     } else {
-      Get.offAll(() => const NavigationPage());
+      Get.offAll(() => const AdminHomePage());
     }
   }
 

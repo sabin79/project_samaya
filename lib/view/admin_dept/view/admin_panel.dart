@@ -19,40 +19,47 @@ class AdminHomePage extends StatelessWidget {
             Expanded(
               child: Container(
                 width: double.infinity,
-                color: Colors.teal[200],
+                color: const Color(0xff2d59f4).withOpacity(0.8),
                 child: Padding(
                   padding:
                       const EdgeInsets.only(top: 12, right: 35, left: 30.0),
                   child: Stack(children: [
                     Positioned(
-                        top: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Hello, Admin',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  Text(
-                                    'Today is $todayDate',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ]),
-                            SizedBox(
-                              width: 50,
+                      top: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Hello, Admin',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                'Today is $todayDate',
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 130,
+                          ),
+                          const CircleAvatar(
+                            backgroundColor: Colors.white24,
+                            radius: 20,
+                            child: Icon(
+                              Icons.notifications_sharp,
+                              color: Colors.white,
                             ),
-                            Icon(Icons.notifications_sharp)
-                          ],
-                        )),
+                          )
+                        ],
+                      ),
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,34 +69,34 @@ class AdminHomePage extends StatelessWidget {
                                 Get.to(AddUser());
                               },
                               child: CircleAvatar(
-                                radius: 50,
-                                backgroundColor: Colors.grey,
-                                child: Icon(
+                                radius: 55,
+                                backgroundColor: Colors.grey.withOpacity(0.7),
+                                child: const Icon(
                                   Icons.person,
                                   size: 45,
                                   color: Colors.white,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 12),
-                            Text('Add User')
+                            const SizedBox(height: 12),
+                            const Text('Add User')
                           ],
                         ),
-                        SizedBox(width: 45),
+                        const SizedBox(width: 45),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              radius: 50,
-                              backgroundColor: Colors.grey,
-                              child: Icon(
+                              radius: 55,
+                              backgroundColor: Colors.grey.withOpacity(0.7),
+                              child: const Icon(
                                 Icons.add,
                                 size: 45,
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(height: 12),
-                            Text('Add Project')
+                            const SizedBox(height: 12),
+                            const Text('Add Project')
                           ],
                         ),
                       ],

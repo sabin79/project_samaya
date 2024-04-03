@@ -5,7 +5,8 @@ import 'package:project_samaya/widgets/input_field.dart';
 
 class AddUser extends StatelessWidget {
   final AddUserController controller = Get.put(AddUserController());
-  TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   AddUser({super.key});
 
   @override
@@ -16,7 +17,7 @@ class AddUser extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -25,32 +26,32 @@ class AddUser extends StatelessWidget {
                 title: 'Name',
                 controller: controller.nameController,
                 hint: 'Utsav',
-                widget: Text(''),
+                widget: const Text(''),
               ),
               InputField(
                   title: 'Email',
                   controller: controller.emailController,
                   hint: 'ilutsav@gmail.com',
-                  widget: Text('')),
+                  widget: const Text('')),
               InputField(
                   title: 'Password',
                   controller: controller.passwordController,
                   hint: '********',
-                  widget: Text('')),
+                  widget: const Text('')),
               InputField(
                   title: 'Confirm Password',
                   controller: confirmPasswordController,
                   hint: '********',
-                  widget: Text('')),
+                  widget: const Text('')),
             ]),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Department',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             DropdownButtonFormField(
@@ -65,13 +66,13 @@ class AddUser extends StatelessWidget {
                 onChanged: (newvalue) {
                   controller.setSelected(newvalue.toString());
                 }),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: () {}, child: Text('Add User')),
+                ElevatedButton(onPressed: () {}, child: const Text('Add User')),
               ],
             )
           ],
