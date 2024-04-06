@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_samaya/controller/auth_controller.dart';
-import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
-
-import '../controller/employee_login_controller.dart';
+import 'package:project_samaya/view/employee_department/controller/employee_login_controller.dart';
 
 class EmployeeLoginPage extends StatelessWidget {
   const EmployeeLoginPage({super.key});

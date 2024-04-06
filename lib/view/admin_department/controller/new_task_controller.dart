@@ -8,16 +8,15 @@ class NewTaskController extends GetxController {
   var selectedTime = TimeOfDay.now().obs;
   DateTime _selectedDate = DateTime.now();
   var formattedDate;
-  String selected = "".obs.toString();
 
   TextEditingController title = TextEditingController();
   TextEditingController endDate = TextEditingController();
   TextEditingController endTime = TextEditingController();
   TextEditingController description = TextEditingController();
   TextEditingController repeat = TextEditingController();
-
-  void setSelected(String value) {
-    selected = value;
+  List<String> selected = [];
+  void setSelected(value) {
+    selected = [value];
   }
 
   chooseDate() async {

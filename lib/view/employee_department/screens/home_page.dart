@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:iconly/iconly.dart';
-import 'package:intl/intl.dart';
-import 'package:project_samaya/view/utils/task/main_task_grid.dart';
-import 'package:project_samaya/view/utils/task/subtask_tab.dart';
 
-import '../../admin_department/add_new_task.dart';
+import 'package:intl/intl.dart';
+import 'package:project_samaya/utils/task/main_task_grid.dart';
+import 'package:project_samaya/utils/task/subtask_tab.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,15 +13,15 @@ class HomePage extends StatelessWidget {
     String todayDate = DateFormat.MMMEd().format(now);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 42, 97, 238),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 78, 128, 255),
-        onPressed: (() => Get.to(const AddNewTask())),
-        child: const Icon(
-          IconlyBold.paper_plus,
-          color: Colors.white,
-          size: 35,
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: const Color.fromARGB(255, 78, 128, 255),
+      //   onPressed: (() => Get.to(const AddNewTask())),
+      //   child: const Icon(
+      //     IconlyBold.paper_plus,
+      //     color: Colors.white,
+      //     size: 35,
+      //   ),
+      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: SafeArea(
         child: Column(

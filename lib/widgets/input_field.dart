@@ -26,7 +26,7 @@ class InputField extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? Colors.white : Colors.black),
+                  color: Get.isDarkMode ? Colors.white : Colors.black54),
             ),
             const SizedBox(
               height: 8.0,
@@ -46,21 +46,21 @@ class InputField extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       autofocus: false,
-                      cursorColor:
-                          Get.isDarkMode ? Colors.grey[100] : Colors.grey[600],
+                      // cursorColor:
+                      //     Get.isDarkMode ? Colors.grey[100] : Colors.grey[600],
                       //      readOnly: widget == null ? false : true,
                       controller: controller,
                       style: TextStyle(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                           color: Get.isDarkMode ? Colors.white : Colors.black),
                       decoration: InputDecoration(
                         hintText: hint,
                         hintStyle: TextStyle(
                             fontSize: 16,
                             color: Get.isDarkMode
-                                ? Colors.grey[400]
-                                : Colors.grey[700]),
+                                ? Colors.grey[300]
+                                : Colors.grey[500]),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: context.theme.colorScheme.background,

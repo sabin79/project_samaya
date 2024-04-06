@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_samaya/controller/user_model.dart';
+import 'package:project_samaya/controller/user_repository.dart';
 
-import '../model/firestore_data/user_model.dart';
-import '../model/firestore_data/user_repository.dart';
-import 'auth_controller.dart';
+import '../../../controller/auth_controller.dart';
 
 class RegisterController extends GetxController {
   var isPasswordHidden = true.obs;
@@ -36,6 +36,6 @@ class RegisterController extends GetxController {
     String name,
     String email,
   ) async {
-    await AuthController.instance.registerEmployee(email, userPassword.text);
+    await AuthController.instance.registerAdmin(email, userPassword.text);
   }
 }

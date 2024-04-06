@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:project_samaya/controller/register_controller.dart';
-import 'package:project_samaya/model/firestore_data/user_model.dart';
+import 'package:project_samaya/controller/user_model.dart';
+import 'package:project_samaya/view/admin_department/controller/register_controller.dart';
 
 import 'package:project_samaya/view/admin_department/user_authentication/user_login_page.dart';
 

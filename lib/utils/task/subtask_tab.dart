@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaya/view/utils/task_pages/all_task.dart';
-import 'package:project_samaya/view/utils/task_pages/completed.dart';
-import 'package:project_samaya/view/utils/task_pages/on_going_task.dart';
+import 'package:project_samaya/utils/task_pages/all_task.dart';
+import 'package:project_samaya/utils/task_pages/completed.dart';
+import 'package:project_samaya/utils/task_pages/on_going_task.dart';
 
 class TaskTabs extends StatefulWidget {
   const TaskTabs({super.key});

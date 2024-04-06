@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_samaya/model/firestore_data/user_model.dart';
+
+import 'user_model.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();

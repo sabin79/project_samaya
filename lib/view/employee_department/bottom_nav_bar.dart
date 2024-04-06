@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-import '../../controller/bottom_nav_controller.dart';
+import 'controller/bottom_nav_controller.dart';
 
 import 'screens/home_page.dart';
 import 'screens/profile_page.dart';
@@ -12,7 +12,7 @@ class NavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //BOTTOM NAVIGATION BAR CONTROLLER
-    BottomNavController bottomNavBarController = Get.put(BottomNavController());
+    NabBarController NavBarController = Get.put(NabBarController());
 
     //LIST OF DIFFERENT PAGES
     final screens = [
@@ -23,8 +23,7 @@ class NavigationPage extends StatelessWidget {
     return Scaffold(
       body: Obx(
         () => IndexedStack(
-            index: bottomNavBarController.selectedIndex.value,
-            children: screens),
+            index: NavBarController.selectedIndex.value, children: screens),
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
@@ -33,9 +32,9 @@ class NavigationPage extends StatelessWidget {
           showSelectedLabels: true,
           showUnselectedLabels: true,
           onTap: (index) {
-            bottomNavBarController.changeIndex(index);
+            NavBarController.changeIndex(index);
           },
-          currentIndex: bottomNavBarController.selectedIndex.value,
+          currentIndex: NavBarController.selectedIndex.value,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(

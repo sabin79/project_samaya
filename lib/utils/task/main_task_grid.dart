@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaya/view/utils/task/main_task_card.dart';
+import 'package:project_samaya/utils/task/main_task_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TaskGrid extends StatefulWidget {

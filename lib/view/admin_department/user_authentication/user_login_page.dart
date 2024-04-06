@@ -2,8 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:project_samaya/controller/login_controller.dart';
+import 'package:project_samaya/view/admin_department/controller/login_controller.dart';
 import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
+
 import '../../../controller/auth_controller.dart';
 import 'user_register_page.dart';
 
@@ -35,7 +36,7 @@ class UserLoginPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome to ',
+                          'Welcome Admin',
                           style: GoogleFonts.ubuntu(
                             color: Colors.white,
                             fontSize: 35,
@@ -135,7 +136,7 @@ class UserLoginPage extends StatelessWidget {
                     //LOGIN BUTTON
                     GestureDetector(
                       onTap: () {
-                        AuthController.instance.loginEmployee(
+                        AuthController.instance.loginAdmin(
                             loginController.userEmail.text.trim(),
                             loginController.userPassword.text.trim());
                       },

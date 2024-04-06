@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:project_samaya/controller/auth_controller.dart';
 
-import '../../../controller/auth_controller.dart';
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class AdminProfilePage extends StatelessWidget {
+  const AdminProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
