@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-import '../controller/bottom_nav_controller.dart';
-import 'calender_page.dart';
-import 'home_page.dart';
-import 'profile_page.dart';
+import '../../controller/bottom_nav_controller.dart';
+
+import 'screens/home_page.dart';
+import 'screens/profile_page.dart';
 
 class NavigationPage extends StatelessWidget {
   const NavigationPage({super.key});
@@ -17,8 +17,7 @@ class NavigationPage extends StatelessWidget {
     //LIST OF DIFFERENT PAGES
     final screens = [
       const HomePage(),
-      const CalenderPage(),
-      const ProfilePage()
+      const ProfilePage(),
     ];
 
     return Scaffold(
@@ -43,11 +42,6 @@ class NavigationPage extends StatelessWidget {
                   IconlyBold.home,
                 ),
                 label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  IconlyBold.calendar,
-                ),
-                label: 'Calendar'),
             BottomNavigationBarItem(
                 icon: Icon(
                   IconlyBold.profile,

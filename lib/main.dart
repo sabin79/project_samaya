@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/controller/auth_controller.dart';
 import 'package:project_samaya/firebase_options.dart';
-import 'view/bottom_nav_bar.dart';
+import 'view/employee_department/bottom_nav_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {

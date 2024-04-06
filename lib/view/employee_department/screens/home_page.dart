@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:project_samaya/view/utils/task/main_task_grid.dart';
 import 'package:project_samaya/view/utils/task/subtask_tab.dart';
 
-import 'add_new_task.dart';
+import '../../admin_department/add_new_task.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

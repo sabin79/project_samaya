@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-import '../controller/new_task_controller.dart';
-import 'home_page.dart';
-import '../widgets/input_field.dart';
+import '../../controller/new_task_controller.dart';
+import '../employee_department/screens/home_page.dart';
+import '../../widgets/input_field.dart';
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({
@@ -20,15 +20,6 @@ class AddNewTask extends StatefulWidget {
 }
 
 class _AddNewTaskState extends State<AddNewTask> {
-  final formkey = GlobalKey<FormState>();
-  final User user = FirebaseAuth.instance.currentUser!;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadCurrentUser();
-  }
-
   bool isLoggedIn() {
     if (FirebaseAuth.instance.currentUser != null) {
       return true;
@@ -39,9 +30,10 @@ class _AddNewTaskState extends State<AddNewTask> {
 
   Future<void> addData(user) async {
     if (isLoggedIn()) {
+      // final uid = await getUid();
       FirebaseFirestore.instance
-          .collection('Samaya Users Details')
-          .doc(user['uid'])
+          .collection('Users')
+          .doc(user)
           .set(user)
           .catchError((e) {
         print(e);
@@ -49,13 +41,6 @@ class _AddNewTaskState extends State<AddNewTask> {
     } else {
       print('You need to be logged In');
     }
-  }
-
-  Future<void> _loadCurrentUser() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    setState(() {
-      user;
-    });
   }
 
   Future<void> dialogTrigger(BuildContext context) async {
@@ -118,7 +103,7 @@ class _AddNewTaskState extends State<AddNewTask> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Form(
-                  key: formkey,
+                  key: newTaskController.formkey,
                   child: Column(
                     children: [
                       InputField(
@@ -306,8 +291,10 @@ class _AddNewTaskState extends State<AddNewTask> {
                   ),
                 ),
                 onPressed: () {
-                  if (!formkey.currentState!.validate()) return;
-                  formkey.currentState!.save();
+                  if (!newTaskController.formkey.currentState!.validate()) {
+                    return;
+                  }
+                  newTaskController.formkey.currentState!.save();
                   final Map<String, dynamic> samayaDetails = {
                     'uid': FirebaseAuth.instance.currentUser != null
                         ? FirebaseAuth.instance.currentUser!.uid

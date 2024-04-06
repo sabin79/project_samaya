@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:project_samaya/view/admin_dept/view/add_user.dart';
+import 'package:project_samaya/view/admin_department/screen/add_user.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 
-import '../controller/auth_controller.dart';
+import '../../../controller/auth_controller.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

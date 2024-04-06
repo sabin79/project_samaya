@@ -1,49 +1,64 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../view/admin_dept/view/admin_panel.dart';
-import '../view/bottom_nav_bar.dart';
-import '../view/user_authentication/user_login_page.dart';
+import 'package:project_samaya/view/admin_employee_nav.dart';
+import '../view/admin_department/screen/admin_panel.dart';
+import '../view/employee_department/bottom_nav_bar.dart';
+import '../view/employee_department/screens/home_page.dart';
+import '../view/admin_department/user_authentication/user_login_page.dart';
 
 class AuthController extends GetxController {
   //TO ACCESS THIS CONTROLLER FROM ANYWHERE
   static AuthController instance = Get.find();
 
   //FOR DEFINING THE USER MODEL FROM THE FIREBASE
-  late Rx<User?> _user;
+  late Rx<User?> _firebaseuser;
+  late Rx<User?> _admin;
 
   //FOR USING VARIOUS FIREBASE FUNCTIONS
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
 
   @override
   void onReady() {
     super.onReady();
 
     //TO ASSIGN THE CURRENT USER
-    _user = Rx<User?>(auth.currentUser);
+    _firebaseuser = Rx<User?>(auth.currentUser);
+    _admin = Rx<User?>(auth.currentUser);
 
     //TO CHECK THE STATUS OF THE USER
-    _user.bindStream(auth.userChanges());
+    _firebaseuser.bindStream(auth.userChanges());
+    _admin.bindStream(auth.userChanges());
 
     //EVER FUNCTION IS USED TO NOTIFY THE APP CORRESPONDING CHANGES FROM THE FIREBASE
-    ever(_user, _initialScreen);
+    ever(_firebaseuser, _initialScreen);
+    // ever(_admin, _adminScreen);
   }
 
   _initialScreen(User? user) {
     if (user == null) {
-      Get.offAll(() => const UserLoginPage());
+      Get.offAll(() => const AdminEmployeeSwitchScreen());
     } else {
-      Get.offAll(() => const AdminHomePage());
+      Get.offAll(() => const NavigationPage());
     }
   }
 
-  //REGISTRATION FUNCTION
-  void registerUser(String email, password) async {
+  // _adminScreen(User? admin) {
+  //   if (admin == null) {
+  //     Get.offAll(() => const UserLoginPage());
+  //   } else {
+  //     Get.offAll(() => const AdminHomePage());
+  //   }
+  // }
+
+  //REGISTRATION FUNCTION   FOR EMPLOYEE
+  Future<void> registerEmployee(String email, password) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-
-      //  Get.offAll(() => const HomePage());
+      _firebaseuser.value != null
+          ? Get.offAll(() => const AdminEmployeeSwitchScreen())
+          : Get.offAll(() => const NavigationPage());
     } catch (e) {
       print(e);
       Get.snackbar(
@@ -56,8 +71,40 @@ class AuthController extends GetxController {
     }
   }
 
-  //LOGIN FUNCTION
-  void loginUser(String email, password) async {
+//REGISTRATION FUNCTION FOR ADMIN
+  Future<void> registerAdmin(String email, password) async {
+    try {
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      print(e);
+      Get.snackbar(
+        "Problem Occurred",
+        "Alert",
+        snackPosition: SnackPosition.BOTTOM,
+        titleText: const Text("Account Creation Failed"),
+        messageText: Text(e.toString()),
+      );
+    }
+  }
+
+  //LOGIN FUNCTION FOR EMPLOYEE
+  void loginEmployee(String email, password) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+    } catch (e) {
+      Get.snackbar(
+        "Problem Occurred",
+        "Alert",
+        snackPosition: SnackPosition.BOTTOM,
+        titleText: const Text("Login Failed"),
+        messageText: Text(e.toString()),
+      );
+    }
+  }
+
+//LOGIN FUNCTION FOR ADMIN
+  void loginAdmin(String email, password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {

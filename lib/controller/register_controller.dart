@@ -3,6 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../model/firestore_data/user_model.dart';
+import '../model/firestore_data/user_repository.dart';
+import 'auth_controller.dart';
+
 class RegisterController extends GetxController {
   var isPasswordHidden = true.obs;
   var isConfirmPasswordHidden = true.obs;
@@ -10,8 +14,8 @@ class RegisterController extends GetxController {
   final TextEditingController userPassword = TextEditingController();
   final TextEditingController confirmUserPassword = TextEditingController();
   final TextEditingController userName = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late FirebaseAuth auth;
-  final formkey = GlobalKey<FormState>();
 
   Future adduserDetails(
     String name,
@@ -21,5 +25,17 @@ class RegisterController extends GetxController {
       'Name': name,
       'Email': email,
     });
+  }
+
+  final userRo = Get.put(UserRepository());
+  Future<void> createUser(UserModel user) async {
+    await userRo.createUser(user);
+  }
+
+  Future adduser(
+    String name,
+    String email,
+  ) async {
+    await AuthController.instance.registerEmployee(email, userPassword.text);
   }
 }
