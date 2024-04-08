@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:project_samaya/utils/task/main_task_grid.dart';
-import 'package:project_samaya/utils/task/subtask_tab.dart';
+import 'package:project_samaya/utils/task_pages/all_task.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -73,7 +73,8 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const TaskTabs(),
+            //     const TaskTabs(),
+            const AllTasks(),
           ],
         ),
       ),

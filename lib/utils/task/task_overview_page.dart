@@ -33,109 +33,110 @@ class TaskOverviewPage extends StatelessWidget {
         ],
         backgroundColor: Colors.white,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.bottomSheet(
-            Container(
-              height: h * 0.38,
-              width: w,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 18,
-                  left: 13,
-                  right: 13,
-                  bottom: 15,
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Add a New SubTask',
-                      style: GoogleFonts.ubuntuCondensed(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: h * 0.02,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Title',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: h * 0.02,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Select Date',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: w * 0.04,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Select Time',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: h * 0.03,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        width: w * 0.4,
-                        height: h * 0.07,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          gradient: LinearGradient(
-                              colors: [Colors.blue.shade600, Colors.blue],
-                              begin: Alignment.topLeft,
-                              end: Alignment.topRight),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "add Subtask",
-                            style: GoogleFonts.ubuntuCondensed(
-                                fontSize: 18.0, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-        backgroundColor: const Color.fromARGB(255, 78, 128, 255),
-        child: const Icon(IconlyLight.plus),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Get.bottomSheet(
+      //       Container(
+      //         height: h * 0.38,
+      //         width: w,
+      //         decoration: const BoxDecoration(
+      //           borderRadius: BorderRadius.only(
+      //             topLeft: Radius.circular(15),
+      //             topRight: Radius.circular(15),
+      //           ),
+      //           color: Colors.white,
+      //         ),
+      //         child: Padding(
+      //           padding: const EdgeInsets.only(
+      //             top: 18,
+      //             left: 13,
+      //             right: 13,
+      //             bottom: 15,
+      //           ),
+      //           child: Column(
+      //             children: [
+      //               Text(
+      //                 'Add a New SubTask',
+      //                 style: GoogleFonts.ubuntuCondensed(
+      //                     fontSize: 18.0, fontWeight: FontWeight.bold),
+      //               ),
+      //               SizedBox(
+      //                 height: h * 0.02,
+      //               ),
+      //               TextField(
+      //                 decoration: InputDecoration(
+      //                   hintText: 'Title',
+      //                   border: OutlineInputBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                 ),
+      //               ),
+      //               SizedBox(
+      //                 height: h * 0.02,
+      //               ),
+      //               Row(
+      //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                 children: [
+      //                   Expanded(
+      //                     child: TextField(
+      //                       decoration: InputDecoration(
+      //                         hintText: 'Select Date',
+      //                         border: OutlineInputBorder(
+      //                           borderRadius: BorderRadius.circular(10),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ),
+      //                   SizedBox(
+      //                     width: w * 0.04,
+      //                   ),
+      //                   Expanded(
+      //                     child: TextField(
+      //                       decoration: InputDecoration(
+      //                         hintText: 'Select Time',
+      //                         border: OutlineInputBorder(
+      //                           borderRadius: BorderRadius.circular(10),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //               SizedBox(
+      //                 height: h * 0.03,
+      //               ),
+      //               GestureDetector(
+      //                 onTap: () {},
+      //                 child: Container(
+      //                   width: w * 0.4,
+      //                   height: h * 0.07,
+      //                   decoration: BoxDecoration(
+      //                     borderRadius: BorderRadius.circular(15),
+      //                     gradient: LinearGradient(
+      //                         colors: [Colors.blue.shade600, Colors.blue],
+      //                         begin: Alignment.topLeft,
+      //                         end: Alignment.topRight),
+      //                   ),
+      //                   // child: Center(
+      //                   //   child: Text(
+      //                   //     "add Subtask",
+      //                   //     style: GoogleFonts.ubuntuCondensed(
+      //                   //         fontSize: 18.0, color: Colors.white),
+      //                   //   ),
+      //                   // ),
+      //                 ),
+      //               )
+      //             ],
+      //           ),
+      //         ),
+      //       ),
+      //     );
+      //   },
+      //   backgroundColor: const Color.fromARGB(255, 78, 128, 255),
+      //   child: const Icon(IconlyLight.plus),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -146,7 +147,7 @@ class TaskOverviewPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(18),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       data['title'].toString(),
@@ -157,6 +158,7 @@ class TaskOverviewPage extends StatelessWidget {
                       height: h * 0.015,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           padding: const EdgeInsets.all(10),
@@ -183,7 +185,7 @@ class TaskOverviewPage extends StatelessWidget {
                         fontSize: 15,
                         color: Colors.black,
                       ),
-                      maxLines: 3,
+                      maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(

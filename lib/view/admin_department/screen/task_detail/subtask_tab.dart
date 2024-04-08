@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:project_samaya/utils/task_pages/all_task.dart';
 import 'package:project_samaya/utils/task_pages/completed.dart';
-import 'package:project_samaya/utils/task_pages/on_going_task.dart';
 
-class TaskTabs extends StatefulWidget {
-  const TaskTabs({super.key});
+class TaskDetailPage extends StatefulWidget {
+  const TaskDetailPage({super.key});
 
   @override
-  State<TaskTabs> createState() => _TaskTabsState();
+  State<TaskDetailPage> createState() => _TaskDetailPageState();
 }
 
-class _TaskTabsState extends State<TaskTabs> with TickerProviderStateMixin {
+class _TaskDetailPageState extends State<TaskDetailPage>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController tabController = TabController(length: 3, vsync: this);
-    return Expanded(
-      child: Column(
+    TabController tabController = TabController(length: 2, vsync: this);
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "Project  Detail",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Column(
         children: [
           TabBar(
             controller: tabController,
             indicatorColor: Colors.green,
             tabs: const [
               Tab(text: 'All task'),
-              Tab(
-                text: " going on",
-              ),
               Tab(
                 text: " completed",
               ),
@@ -33,7 +37,6 @@ class _TaskTabsState extends State<TaskTabs> with TickerProviderStateMixin {
           Expanded(
               child: TabBarView(controller: tabController, children: const [
             AllTasks(),
-            OnGoingTask(),
             CompletedTasks(),
           ]))
         ],

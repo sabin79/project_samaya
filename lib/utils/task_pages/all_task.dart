@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../task/subtask_tile.dart';
+import 'package:get/get.dart';
+import 'package:project_samaya/utils/task/task_overview_page.dart';
+import '../../view/admin_department/screen/task_detail/subtask_tile.dart';
 
 class AllTasks extends StatelessWidget {
   const AllTasks({super.key});
@@ -47,9 +49,25 @@ class AllTasks extends StatelessWidget {
                 itemBuilder: (context, index) {
                   print(snapshot.data?.docs[index]);
 
-                  return TaskTile(
-                    taskName: "${snapshot.data?.docs[index]['task']}",
-                    endTime: DateTime(2025, 7, 23, 10, 00),
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(const TaskOverviewPage(), arguments: {
+                        "tags": "${snapshot.data?.docs[index]['tag'][0]}",
+                        "title": "${snapshot.data?.docs[index]['task']}",
+                        "description":
+                            "${snapshot.data?.docs[index]['Description']}",
+                        "sDate": "${snapshot.data?.docs[index]['enddate']}",
+                        "sTime": "${snapshot.data?.docs[index]['Choosetime']}",
+                      });
+                    },
+                    child: TaskTile(
+                      taskName: "${snapshot.data?.docs[index]['task']}",
+                      endDate: DateTime(
+                        2025,
+                        7,
+                        23,
+                      ),
+                    ),
                   );
                 },
               );

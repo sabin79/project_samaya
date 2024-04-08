@@ -13,7 +13,7 @@ class _TaskGridState extends State<TaskGrid> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
+      scrollDirection: Axis.horizontal,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: SizedBox(
