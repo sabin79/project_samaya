@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
 
 import '../controller/new_task_controller.dart';
 import '../../employee_department/screens/home_page.dart';
@@ -31,7 +32,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
   Future<void> addData(Map<String, dynamic> task) async {
     if (isLoggedIn()) {
       FirebaseFirestore.instance
-          .collection('Samaya Users Details')
+          .collection('Samaya Task Details')
           .doc(task['uid']) // Assuming 'uid' is a field in userData
           .set(task)
           .catchError((e) {
@@ -284,6 +285,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                         return;
                       }
                       newTaskController.formkey.currentState!.save();
+                      Get.to(const AdminHomePage());
                       final Map<String, dynamic> samayaDetails = {
                         'uid': FirebaseAuth.instance.currentUser != null
                             ? FirebaseAuth.instance.currentUser!.uid

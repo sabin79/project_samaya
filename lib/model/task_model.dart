@@ -1,4 +1,5 @@
 class MainTaskModel {
+  String? taskTag;
   String? mtTag;
   String? mtTitle;
   String? mtDesc;
@@ -6,6 +7,7 @@ class MainTaskModel {
   DateTime? endDate;
 
   MainTaskModel({
+    this.taskTag,
     this.mtTag,
     this.mtTitle,
     this.mtDesc,

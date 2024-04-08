@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/controller/employee_model.dart';
 
-import 'user_model.dart';
-
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
 
-  createUser(UserModel user) async {
+  createEmployee(EmployeeModel user) async {
     await _db
-        .collection('Users')
+        .collection('EMployee')
         .add(user.tojson())
         .then((value) => print('User created successfully'))
         .whenComplete(
@@ -30,6 +28,4 @@ class UserRepository extends GetxController {
       return error;
     });
   }
-
-  createEmployee(EmployeeModel user) {}
 }

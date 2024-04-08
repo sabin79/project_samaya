@@ -18,7 +18,6 @@ class BottomNavBarpage extends StatelessWidget {
     final screens = [
       const AdminHomePage(),
       const TaskDetailPage(),
-      const AssignProjectPage(),
       const AdminProfilePage(),
     ];
     return Scaffold(
@@ -49,14 +48,6 @@ class BottomNavBarpage extends StatelessWidget {
                 icon: Icon(
                   Icons.task,
                   color: bottomNavController.CurrentTab.value == 1
-                      ? Colors.blue
-                      : Colors.grey.shade600,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  IconlyBold.add_user,
-                  color: bottomNavController.CurrentTab.value == 2
                       ? Colors.blue
                       : Colors.grey.shade600,
                 ),

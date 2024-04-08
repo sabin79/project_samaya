@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/view/admin_department/screen/bottom_nav_bar.dart';
-import 'package:project_samaya/view/admin_employee_nav.dart';
+import 'package:project_samaya/widgets/admin_employee_nav.dart';
 import '../view/admin_department/screen/admin_panel.dart';
 import '../view/employee_department/bottom_nav_bar.dart';
 
@@ -11,7 +11,7 @@ class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
   //FOR DEFINING THE USER MODEL FROM THE FIREBASE
-  late Rx<User?> _firebaseuser;
+
   late Rx<User?> _admin;
 
   //FOR USING VARIOUS FIREBASE FUNCTIONS
@@ -22,25 +22,25 @@ class AuthController extends GetxController {
     super.onReady();
 
     //TO ASSIGN THE CURRENT USER
-    _firebaseuser = Rx<User?>(auth.currentUser);
+
     _admin = Rx<User?>(auth.currentUser);
 
     //TO CHECK THE STATUS OF THE USER
-    _firebaseuser.bindStream(auth.userChanges());
+
     _admin.bindStream(auth.userChanges());
 
     //EVER FUNCTION IS USED TO NOTIFY THE APP CORRESPONDING CHANGES FROM THE FIREBASE
-    ever(_firebaseuser, _initialScreen);
+
     ever(_admin, _adminScreen);
   }
 
-  _initialScreen(User? user) {
-    if (user == null) {
-      Get.offAll(() => const AdminEmployeeSwitchScreen());
-    } else {
-      Get.offAll(() => const NavigationPage());
-    }
-  }
+  // _initialScreen(User? user) {
+  //   if (user == null) {
+  //     Get.offAll(() => const AdminEmployeeSwitchScreen());
+  //   } else {
+  //     Get.offAll(() => const NavigationPage());
+  //   }
+  // }
 
   _adminScreen(User? admin) {
     if (admin == null) {
@@ -68,9 +68,6 @@ class AuthController extends GetxController {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      _firebaseuser.value != null
-          ? Get.offAll(() => const AdminEmployeeSwitchScreen())
-          : Get.offAll(() => const NavigationPage());
     } catch (e) {
       print(e);
       Get.snackbar(
@@ -88,9 +85,6 @@ class AuthController extends GetxController {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      _firebaseuser.value != null
-          ? Get.offAll(() => const AdminEmployeeSwitchScreen())
-          : Get.offAll(() => const AdminHomePage());
     } catch (e) {
       print(e);
       Get.snackbar(

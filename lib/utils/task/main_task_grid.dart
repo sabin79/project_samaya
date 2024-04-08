@@ -30,7 +30,7 @@ class _TaskGridState extends State<TaskGrid> {
                     itemBuilder: (context, index) {
                       print(snapshot.data?.docs[index]);
                       return TaskCard(
-                        taskTag: "${snapshot.data?.docs[index]['tag'][0]}",
+                        taskTag: "${snapshot.data?.docs[index]['tag']}",
                         taskTitle: "${snapshot.data?.docs[index]['task']}",
                         taskDescription:
                             "${snapshot.data?.docs[index]['Description']}",

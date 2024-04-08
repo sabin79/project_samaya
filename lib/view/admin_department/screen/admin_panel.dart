@@ -1,12 +1,15 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:project_samaya/view/admin_department/screen/add_user.dart';
+import 'package:project_samaya/view/admin_department/screen/add_employee.dart';
+
+import 'asign_project.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});
@@ -57,11 +60,23 @@ class AdminHomePage extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Hello,   Admin',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w400),
-                        ),
+                        StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('Admin Details')
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  'Welcome ${snapshot.data!.docs[0]['name']}',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
+                                );
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }),
                         const SizedBox(
                           height: 10,
                         ),
@@ -85,7 +100,7 @@ class AdminHomePage extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to(AddUser());
+                            Get.to(const AddUser());
                           },
                           child: const CircleAvatar(
                             radius: 55,
@@ -102,20 +117,23 @@ class AdminHomePage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(width: 45),
-                    const Column(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: 55,
-                          backgroundColor: Color.fromARGB(255, 78, 128, 255),
-                          child: Icon(
-                            Icons.add,
-                            size: 45,
-                            color: Colors.white,
+                        InkWell(
+                          onTap: () => Get.to(const AssignProjectPage()),
+                          child: const CircleAvatar(
+                            radius: 55,
+                            backgroundColor: Color.fromARGB(255, 78, 128, 255),
+                            child: Icon(
+                              Icons.add,
+                              size: 45,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        SizedBox(height: 12),
-                        Text('Add Project')
+                        const SizedBox(height: 12),
+                        const Text('Add Project')
                       ],
                     ),
                   ],

@@ -6,7 +6,7 @@ import 'package:project_samaya/view/admin_department/controller/login_controller
 import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
 
 import '../../../controller/auth_controller.dart';
-import 'user_register_page.dart';
+import 'admin_register_page.dart';
 
 class UserLoginPage extends StatelessWidget {
   const UserLoginPage({super.key});

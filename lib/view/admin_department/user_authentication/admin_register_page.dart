@@ -1,11 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:project_samaya/controller/auth_controller.dart';
 import 'package:project_samaya/controller/user_model.dart';
 import 'package:project_samaya/view/admin_department/controller/register_controller.dart';
+import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
 
-import 'package:project_samaya/view/admin_department/user_authentication/user_login_page.dart';
+import 'package:project_samaya/view/admin_department/user_authentication/admin_login_page.dart';
 
 class UserRegistrationPage extends StatefulWidget {
   const UserRegistrationPage({super.key});
@@ -17,6 +21,28 @@ class UserRegistrationPage extends StatefulWidget {
 class _UserRegistrationPageState extends State<UserRegistrationPage> {
   @override
   Widget build(BuildContext context) {
+    Future<void> addData(Map<String, dynamic> employee) async {
+      bool isLoggedIn() {
+        if (FirebaseAuth.instance.currentUser != null) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      if (isLoggedIn()) {
+        FirebaseFirestore.instance
+            .collection('Admin Details')
+            .doc(employee['uid']) // Assuming 'uid' is a field in userData
+            .set(employee)
+            .catchError((e) {
+          print(e);
+        });
+      } else {
+        print('You need to be logged In');
+      }
+    }
+
     final RegisterController registerController = Get.put(RegisterController());
 
     double width = MediaQuery.of(context).size.width;
@@ -179,10 +205,6 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
 
                       //REGISTER BUTTON
                       GestureDetector(
-                        //        if (!newTaskController.formkey.currentState!.validate()) {
-                        //   return;
-                        // }
-                        // newTaskController.formkey.currentState!.save();
                         onTap: () {
                           if (!registerController.formKey.currentState!
                               .validate()) {
@@ -192,23 +214,37 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
                             );
                           }
                           registerController.formKey.currentState!.save();
-                          // if (registerController.userPassword.text ==
-                          //     registerController.confirmUserPassword.text) {
-                          //   AuthController.instance.registerEmployee(
-                          //     registerController.userEmail.text.trim(),
-                          //     registerController.userPassword.text.trim(),
-                          //   );
-                          // } else {
-                          //   Get.snackbar('Error', 'Password does not match',
-                          //       snackPosition: SnackPosition.BOTTOM);
-                          // }
+                          if (registerController.userPassword.text ==
+                              registerController.confirmUserPassword.text) {
+                            AuthController.instance.registerEmployee(
+                              registerController.userEmail.text.trim(),
+                              registerController.userPassword.text.trim(),
+                            );
+                          } else {
+                            Get.snackbar('Error', 'Password does not match',
+                                snackPosition: SnackPosition.BOTTOM);
+                          }
 
-                          final userdb = UserModel(
-                              fullname: registerController.userName.text,
-                              email: registerController.userEmail.text,
-                              password: registerController.userPassword.text);
-                          registerController.createUser(userdb);
-                          print(userdb);
+                          // final userdb = UserModel(
+                          //     fullname: registerController.userName.text,
+                          //     email: registerController.userEmail.text,
+                          //     password: registerController.userPassword.text);
+                          // registerController.createUser(userdb);
+                          // print(userdb);
+                          Get.to(const AdminHomePage());
+                          final Map<String, dynamic> EmployeeDetails = {
+                            'uid': FirebaseAuth.instance.currentUser != null
+                                ? FirebaseAuth.instance.currentUser!.uid
+                                : '',
+                            'name': registerController.userName.text,
+                            'email': registerController.userEmail.text,
+                            'password': registerController.userPassword.text
+                          };
+                          addData(EmployeeDetails)
+                              .then((result) {})
+                              .catchError((e) {
+                            print(e);
+                          });
                         },
                         child: Container(
                           width: width * 0.8,

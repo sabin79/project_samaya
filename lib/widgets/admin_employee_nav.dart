@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/view/employee_department/authentication/login_as_employee.dart';
 
-import 'admin_department/user_authentication/user_login_page.dart';
+import '../view/admin_department/user_authentication/admin_login_page.dart';
 
 class AdminEmployeeSwitchScreen extends StatefulWidget {
   const AdminEmployeeSwitchScreen({super.key});
