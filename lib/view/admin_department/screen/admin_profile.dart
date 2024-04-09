@@ -1,10 +1,53 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project_samaya/controller/auth_controller.dart';
 
-class AdminProfilePage extends StatelessWidget {
+class AdminProfilePage extends StatefulWidget {
   const AdminProfilePage({super.key});
+
+  @override
+  State<AdminProfilePage> createState() => _AdminProfilePageState();
+}
+
+class _AdminProfilePageState extends State<AdminProfilePage> {
+  File? pickedImage;
+  showAlertBox() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Choose Image From'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  onTap: () {
+                    pickImage(ImageSource.camera);
+
+                    Get.to(context);
+                  },
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text('Camera'),
+                ),
+                ListTile(
+                  onTap: () {
+                    pickImage(ImageSource.gallery);
+                    Get.to(context);
+                  },
+                  leading: const Icon(Icons.image),
+                  title: const Text('Gallery'),
+                )
+              ],
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +73,17 @@ class AdminProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.asset("assects/profile.png"),
-                  ),
-                ),
+                    height: 150,
+                    width: 150,
+                    child: pickedImage != null
+                        ? CircleAvatar(
+                            radius: 100,
+                            backgroundImage: FileImage(pickedImage!),
+                          )
+                        : CircleAvatar(
+                            radius: 80,
+                            child: Image.asset("assects/profile.png"),
+                          )),
                 SizedBox(
                   height: h * 0.02,
                 ),
@@ -117,5 +164,21 @@ class AdminProfilePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  pickImage(ImageSource imageSource) async {
+    try {
+      final photo = await ImagePicker().pickImage(source: imageSource);
+
+      if (photo == null) {
+        return;
+      }
+
+      setState(() {
+        pickedImage = File(photo.path);
+      });
+    } catch (ex) {
+      debugPrint(ex.toString());
+    }
   }
 }
