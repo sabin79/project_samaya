@@ -18,7 +18,7 @@ class EmployeeRegisterController extends GetxController {
   late FirebaseAuth auth;
 
   List<String> selected = [];
-  List<String> dropDownItems = ["UI/UX", "Frontend", "Backend", "QA"];
+
   void setSelected(value) {
     selected = value;
   }

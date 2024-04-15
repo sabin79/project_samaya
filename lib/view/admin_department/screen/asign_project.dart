@@ -72,7 +72,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
 
   @override
   Widget build(BuildContext context) {
-    var newTaskController = Get.put(NewTaskController());
+    final NewTaskController newTaskController = Get.put(NewTaskController());
 
     List<String> dropDownItems = ["High Priority", "Low Priority"];
 
