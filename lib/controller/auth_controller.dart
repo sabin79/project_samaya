@@ -46,7 +46,7 @@ class AuthController extends GetxController {
     if (admin == null) {
       Get.offAll(() => const AdminEmployeeSwitchScreen());
     } else {
-      Get.offAll(() => const NavigationPage());
+      Get.offAll(() => const BottomNavBarpage());
     }
   }
 

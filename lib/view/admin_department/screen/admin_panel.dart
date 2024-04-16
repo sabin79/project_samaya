@@ -7,9 +7,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:project_samaya/view/admin_department/screen/add_employee.dart';
+import 'package:project_samaya/view/admin_department/screen/employee_detail_list/add_employee.dart';
 
-import 'asign_project.dart';
+import 'employee_detail_list/asign_project.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});
