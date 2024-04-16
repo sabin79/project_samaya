@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class EmployeeDetailPage extends StatelessWidget {
   const EmployeeDetailPage({super.key});
@@ -26,6 +25,8 @@ class EmployeeDetailPage extends StatelessWidget {
                     print(snapshot.data?.docs[index]);
 
                     return ListTile(
+                      leading:
+                          Text(snapshot.data?.docs[index]['name']?[0] ?? ''),
                       title: Text(snapshot.data?.docs[index]['name']),
                       subtitle: Text(snapshot.data?.docs[index]['department']),
                     );
