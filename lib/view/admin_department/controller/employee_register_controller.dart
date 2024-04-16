@@ -20,7 +20,7 @@ class EmployeeRegisterController extends GetxController {
   List<String> selected = [];
   List<String> dropDownItems = ["UI/UX", "Frontend", "Backend", "QA"];
   void setSelected(value) {
-    selected = value;
+    selected = [value];
   }
 
   // Future adduserDetails(
