@@ -8,10 +8,16 @@ class EmployeeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Employee Detail'),
+        title: const Text(
+          'Employee Details',
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.blue,
       ),
       body: Column(children: [
+        const SizedBox(height: 10),
+        const Text("Employee with Details", style: TextStyle(fontSize: 20)),
         StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Employee Details')
@@ -22,13 +28,12 @@ class EmployeeDetailPage extends StatelessWidget {
                 return ListView.builder(
                   itemCount: snapshot.data?.docs.length,
                   itemBuilder: (context, index) {
-                    print(snapshot.data?.docs[index]);
+                    print("employeelist ${snapshot.data?.docs[index]}");
 
                     return ListTile(
-                      leading:
-                          Text(snapshot.data?.docs[index]['name']?[0] ?? ''),
-                      title: Text(snapshot.data?.docs[index]['name']),
-                      subtitle: Text(snapshot.data?.docs[index]['department']),
+                      leading: Text(snapshot.data!.docs[index]['name']),
+                      title: Text(snapshot.data!.docs[index]['name']),
+                      subtitle: Text(snapshot.data!.docs[index]['department']),
                     );
                   },
                 );
