@@ -7,9 +7,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:project_samaya/view/admin_department/screen/add_employee.dart';
+import 'package:project_samaya/view/admin_department/screen/employee_detail_list/add_employee.dart';
 
-import 'asign_project.dart';
+import 'employee_detail_list/asign_project.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({super.key});
@@ -24,7 +24,8 @@ class AdminHomePage extends StatelessWidget {
         title: const Text('Admin Panel'),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 78, 128, 255),
+        backgroundColor:
+            const Color.fromARGB(255, 78, 128, 255).withOpacity(0.9),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
@@ -143,8 +144,8 @@ class AdminHomePage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 78, 128, 255),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 78, 128, 255).withOpacity(0.9),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50),
                   topRight: Radius.circular(50),

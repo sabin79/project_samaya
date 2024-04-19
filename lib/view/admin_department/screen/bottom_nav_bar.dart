@@ -5,7 +5,7 @@ import 'package:iconly/iconly.dart';
 import 'package:project_samaya/view/admin_department/controller/admin_nav_bar_controller.dart';
 import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
 import 'package:project_samaya/view/admin_department/screen/admin_profile.dart';
-import 'package:project_samaya/view/admin_department/screen/asign_project.dart';
+import 'package:project_samaya/view/admin_department/screen/employee_detail_list/asign_project.dart';
 
 import 'task_detail/subtask_tab.dart';
 

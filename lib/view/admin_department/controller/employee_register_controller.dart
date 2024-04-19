@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/controller/auth_controller.dart';
 import 'package:project_samaya/controller/employee_model.dart';
-import 'package:project_samaya/controller/user_model.dart';
+
 import 'package:project_samaya/controller/user_repository.dart';
 
 class EmployeeRegisterController extends GetxController {
@@ -18,7 +17,7 @@ class EmployeeRegisterController extends GetxController {
   late FirebaseAuth auth;
 
   List<String> selected = [];
-  List<String> dropDownItems = ["UI/UX", "Frontend", "Backend", "QA"];
+
   void setSelected(value) {
     selected = [value];
   }

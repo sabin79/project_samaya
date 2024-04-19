@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_samaya/utils/task/main_task_card.dart';
+import 'package:project_samaya/view/employee_department/screens/task/main_task_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TaskGrid extends StatefulWidget {
@@ -20,7 +20,7 @@ class _TaskGridState extends State<TaskGrid> {
           height: MediaQuery.of(context).size.height * 0.38,
           child: StreamBuilder(
             stream: FirebaseFirestore.instance
-                .collection('Samaya Users Details')
+                .collection('Samaya Task Details')
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {

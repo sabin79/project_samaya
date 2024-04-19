@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:project_samaya/utils/task/task_overview_page.dart';
+import 'package:project_samaya/view/employee_department/screens/task/task_overview_page.dart';
 
 class TaskCard extends StatefulWidget {
   String taskTag;
@@ -30,13 +30,16 @@ class _TaskCardState extends State<TaskCard> {
     double h = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: (() => Get.to(const TaskOverviewPage(), arguments: {
-            "tags": widget.taskTag,
-            "title": widget.taskTitle,
-            "description": widget.taskDescription,
-            "sDate": widget.dueDate,
-            "sTime": widget.startTime
-          })),
+      onTap: (() => Get.to(
+            const TaskOverviewPage(),
+            arguments: {
+              "tags": widget.taskTag,
+              "title": widget.taskTitle,
+              "description": widget.taskDescription,
+              "sDate": widget.dueDate,
+              "sTime": widget.startTime
+            },
+          )),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Container(

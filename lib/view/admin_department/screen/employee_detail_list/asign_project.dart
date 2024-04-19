@@ -1,15 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
-import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
 
-import '../controller/new_task_controller.dart';
-import '../../employee_department/screens/home_page.dart';
-import '../../../widgets/input_field.dart';
+import 'package:project_samaya/view/admin_department/screen/bottom_nav_bar.dart';
+
+import 'package:project_samaya/view/admin_department/screen/employee_detail_list/employee_detail.dart';
+
+import '../../controller/new_task_controller.dart';
+
+import '../../../../widgets/input_field.dart';
 
 class AssignProjectPage extends StatefulWidget {
   const AssignProjectPage({
@@ -56,8 +60,10 @@ class _AddNewTaskState extends State<AssignProjectPage> {
               onPressed: () {
                 //  formkey.currentState?.reset();
                 Navigator.pop(context);
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const HomePage()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BottomNavBarpage()));
               },
               child: const Icon(
                 Icons.arrow_forward,
@@ -72,7 +78,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
 
   @override
   Widget build(BuildContext context) {
-    var newTaskController = Get.put(NewTaskController());
+    final NewTaskController newTaskController = Get.put(NewTaskController());
 
     List<String> dropDownItems = ["High Priority", "Low Priority"];
 
@@ -168,17 +174,22 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 78, 128, 255),
-                      borderRadius: BorderRadius.circular(12),
-                      //border: Border.all(color: Colors.black, width: 1),
-                    ),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(const EmployeeDetailPage());
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 78, 128, 255),
+                        borderRadius: BorderRadius.circular(12),
+                        //border: Border.all(color: Colors.black, width: 1),
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -285,7 +296,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                         return;
                       }
                       newTaskController.formkey.currentState!.save();
-                      Get.to(const AdminHomePage());
+                      Get.to(const BottomNavBarpage());
                       final Map<String, dynamic> samayaDetails = {
                         'uid': FirebaseAuth.instance.currentUser != null
                             ? FirebaseAuth.instance.currentUser!.uid

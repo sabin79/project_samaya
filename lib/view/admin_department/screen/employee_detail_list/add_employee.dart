@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:project_samaya/view/admin_department/controller/add_user-controller.dart';
 import 'package:project_samaya/view/admin_department/controller/employee_register_controller.dart';
@@ -170,21 +171,37 @@ class _AddUserState extends State<AddUser> {
                 const SizedBox(
                   height: 12,
                 ),
+                // DropdownButtonFormField(
+                //   decoration: InputDecoration(
+                //     enabledBorder: OutlineInputBorder(
+                //       borderRadius: BorderRadius.circular(10),
+                //     ),
+                //   ),
+                //   onChanged: (newvalue) {
+                //     employeeController.setSelected(newvalue.toString());
+                //   },
+                //   items: dropDownItems.map((listitem) {
+                //     return DropdownMenuItem<String>(
+                //       value: listitem.toString(),
+                //       child: Text(listitem),
+                //     );
+                //   }).toList(),
+                // ),
+
                 DropdownButtonFormField(
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
                   onChanged: (newvalue) {
+                    //  selectedRepeat = newvalue.toString();
+
                     employeeController.setSelected(newvalue.toString());
                   },
-                  items: dropDownItems.map((listitem) {
+                  items: dropDownItems.map((priority) {
                     return DropdownMenuItem<String>(
-                      value: listitem.toString(),
-                      child: Text(listitem),
-                    );
+                        value: priority.toString(), child: Text(priority));
                   }).toList(),
+                  hint: Text(
+                    "Department",
+                    style: GoogleFonts.ubuntu(),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
