@@ -6,6 +6,8 @@ import 'package:project_samaya/firebase_options.dart';
 import 'view/employee_department/bottom_nav_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'widgets/admin_employee_nav.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavigationPage(),
+      home: AdminEmployeeSwitchScreen(),
     );
   }
 }

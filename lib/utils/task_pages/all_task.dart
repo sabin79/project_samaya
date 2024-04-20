@@ -9,34 +9,10 @@ class AllTasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('here');
     return Expanded(
       child: Container(
         color: Colors.white,
-        // child: ListView(
-        //   children: [
-        //     TaskTile(
-        //       taskName: 'Meeting about',
-        //       endTime: DateTime(
-        //         2024,
-        //         7,
-        //         23,
-        //       ),
-        //     ),
-        //     TaskTile(
-        //       taskName: 'Meeting with the client',
-        //       endTime: DateTime(2023, 7, 23, 10, 00),
-        //     ),
-        //     TaskTile(
-        //       taskName: 'Code the interface',
-        //       endTime: DateTime(
-        //         2023,
-        //         7,
-        //         23,
-        //       ),
-        //     ),
-        //     //  TaskOverviewCard(),
-        //   ],
-        // ),
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Samaya Task Details')
@@ -47,8 +23,9 @@ class AllTasks extends StatelessWidget {
                 return ListView.builder(
                   itemCount: snapshot.data?.docs.length,
                   itemBuilder: (context, index) {
-                    print(snapshot.data?.docs[index]);
-
+                    print(
+                      snapshot.data?.docs.length,
+                    );
                     return GestureDetector(
                       onTap: () {
                         Get.to(const TaskOverviewPage(), arguments: {
@@ -61,15 +38,23 @@ class AllTasks extends StatelessWidget {
                               "${snapshot.data?.docs[index]['Choosetime']}",
                         });
                       },
-                      child: TaskTile(
-                        taskName: "${snapshot.data?.docs[index]['task']}",
-                        endDate: DateTime(
-                          2025,
-                          7,
-                          23,
-                        ),
-                        // endDate: snapshot.data?.docs[index]['enddate'],
-                      ),
+                      child: Builder(builder: (context) {
+                        print(snapshot.data?.docs[index]['enddate']);
+                        DateTime dateTime = DateTime(
+                            int.parse(
+                                "${snapshot.data?.docs[index]['enddate'].toString().split('/')[2]}"),
+                            int.parse(
+                                "${snapshot.data?.docs[index]['enddate'].toString().split('/')[0]}"),
+                            int.parse(
+                                "${snapshot.data?.docs[index]['enddate'].toString().split('/')[1]}"));
+                        if (DateTime.now().isAfter(dateTime)) {
+                          return const SizedBox();
+                        }
+                        return TaskTile(
+                          taskName: "${snapshot.data?.docs[index]['task']}",
+                          endDate: dateTime,
+                        );
+                      }),
                     );
                   },
                 );

@@ -1,9 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_samaya/view/admin_department/screen/bottom_nav_bar.dart';
 import 'package:project_samaya/widgets/admin_employee_nav.dart';
-import '../view/admin_department/screen/admin_panel.dart';
 import '../view/employee_department/bottom_nav_bar.dart';
 
 class AuthController extends GetxController {
@@ -16,6 +16,8 @@ class AuthController extends GetxController {
 
   //FOR USING VARIOUS FIREBASE FUNCTIONS
   var auth = FirebaseAuth.instance;
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   @override
   void onReady() {
@@ -38,15 +40,29 @@ class AuthController extends GetxController {
   //   if (user == null) {
   //     Get.offAll(() => const AdminEmployeeSwitchScreen());
   //   } else {
-  //     Get.offAll(() => const NavigationPage());
+  //     Get.offAll(() => const EmployeeNavBar());
   //   }
   // }
 
-  _adminScreen(User? admin) {
+  _adminScreen(User? admin) async {
+    bool is_admin = false;
+
     if (admin == null) {
-      Get.offAll(() => const BottomNavBarpage());
+      Get.offAll(() => const AdminEmployeeSwitchScreen());
     } else {
-      Get.offAll(() => const BottomNavBarpage());
+      DocumentSnapshot<Map<String, dynamic>> fdata =
+          await firestore.collection('Admin Details').doc().get();
+      fdata.data()?.forEach((key, value) {
+        if (key == admin.uid) {
+          is_admin = true;
+        }
+      });
+
+      if (is_admin) {
+        Get.offAll(() => const EmployeeNavBar());
+      } else {
+        Get.offAll(() => const AdminNavBar());
+      }
     }
   }
 
@@ -58,7 +74,7 @@ class AuthController extends GetxController {
 //     if (user.isAdmin) {
 //       Get.offAll(() => const AdminHomePage());
 //     } else {
-//       Get.offAll(() => const NavigationPage());
+//       Get.offAll(() => const EmployeeNavBar());
 //     }
 //   }
 // }

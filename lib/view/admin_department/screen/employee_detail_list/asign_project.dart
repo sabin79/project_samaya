@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -37,7 +38,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
     if (isLoggedIn()) {
       FirebaseFirestore.instance
           .collection('Samaya Task Details')
-          .doc(task['uid']) // Assuming 'uid' is a field in userData
+          .doc()
           .set(task)
           .catchError((e) {
         print(e);
@@ -60,10 +61,10 @@ class _AddNewTaskState extends State<AssignProjectPage> {
               onPressed: () {
                 //  formkey.currentState?.reset();
                 Navigator.pop(context);
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BottomNavBarpage()));
+                // Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => const AdminNavBar()));
               },
               child: const Icon(
                 Icons.arrow_forward,
@@ -174,23 +175,45 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                   const SizedBox(
                     height: 5,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(const EmployeeDetailPage());
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 78, 128, 255),
-                        borderRadius: BorderRadius.circular(12),
-                        //border: Border.all(color: Colors.black, width: 1),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                          String dta = await Get.to(const EmployeeDetailPage());
+                          if (!newTaskController.employeename.contains(dta)) {
+                            setState(() {
+                              newTaskController.employeename = [
+                                ...newTaskController.employeename,
+                                dta
+                              ];
+                            });
+                          }
+                        },
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 78, 128, 255),
+                            borderRadius: BorderRadius.circular(12),
+                            //border: Border.all(color: Colors.black, width: 1),
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
+                      SizedBox(
+                        width: 20,
                       ),
-                    ),
+                      Wrap(
+                        children: List.generate(
+                          newTaskController.employeename.length,
+                          (index) => Text(
+                              newTaskController.employeename[index] + "     "),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(
                     height: 10,
@@ -295,8 +318,10 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                       if (!newTaskController.formkey.currentState!.validate()) {
                         return;
                       }
+
                       newTaskController.formkey.currentState!.save();
-                      Get.to(const BottomNavBarpage());
+                      Get.to(const AdminNavBar());
+                      print('here 1');
                       final Map<String, dynamic> samayaDetails = {
                         'uid': FirebaseAuth.instance.currentUser != null
                             ? FirebaseAuth.instance.currentUser!.uid
@@ -306,9 +331,20 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                         'enddate': newTaskController.endDate.text,
                         'Choosetime': newTaskController.endTime.text,
                         'Description': newTaskController.description.text,
+                        "employee": newTaskController.employeename,
                       };
+                      newTaskController.title.clear();
+                      newTaskController.selected.clear();
+                      newTaskController.endDate.clear();
+                      newTaskController.endTime.clear();
+                      newTaskController.description.clear();
+                      newTaskController.employeename.clear();
+
+                      print('here 2');
                       addData(samayaDetails).then((result) {
+                        print('here 3');
                         dialogTrigger(context);
+                        print('here 4');
                       }).catchError((e) {
                         print(e);
                       });

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project_samaya/utils/task_pages/all_task.dart';
 import 'package:project_samaya/utils/task_pages/completed.dart';
+import 'package:project_samaya/view/admin_department/screen/bottom_nav_bar.dart';
 
 class TaskDetailPage extends StatefulWidget {
   const TaskDetailPage({super.key});
@@ -28,7 +30,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
             controller: tabController,
             indicatorColor: Colors.green,
             tabs: const [
-              Tab(text: 'All task'),
+              Tab(text: 'Prcessing'),
               Tab(
                 text: " completed",
               ),

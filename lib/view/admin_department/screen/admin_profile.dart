@@ -19,48 +19,7 @@ class AdminProfilePage extends StatefulWidget {
 }
 
 class _AdminProfilePageState extends State<AdminProfilePage> {
-  User? currentUser;
-  String? name = '', email = '';
-  late Widget _child;
-
-  Future<void> _fetchUserInfo() async {
-    Map<String, dynamic> userInfo;
-    User currentUser = FirebaseAuth.instance.currentUser!;
-
-    DocumentSnapshot snapshot = await FirebaseFirestore.instance
-        .collection("Admin Details")
-        .doc(currentUser.uid)
-        .get();
-
-    userInfo = snapshot.data() as Map<String, dynamic>;
-
-    setState(() {
-      name = userInfo['name'];
-      email = userInfo['email'];
-
-      //  _child = _myWidget();
-    });
-  }
-
-  Future<void> _loadCurrentUser() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      setState(() {
-        currentUser = user;
-      });
-    }
-
-    // print me current user
-  }
-
   @override
-  void initState() {
-    _child = const WaveIndicator();
-    _loadCurrentUser();
-    _fetchUserInfo();
-    super.initState();
-  }
-
   File? pickedImage;
   showAlertBox() {
     return showDialog(
@@ -131,20 +90,52 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
               SizedBox(
                 height: h * 0.02,
               ),
-              Text(
-                currentUser == null ? "" : name.toString(),
-                style: GoogleFonts.ubuntu(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('Admin Details')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: [
+                        Text(
+                          '${snapshot.data!.docs[0]['name']}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          height: h * 0.02,
+                        ),
+                        Text(
+                          ' ${snapshot.data!.docs[0]['email']}',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
-              SizedBox(
-                height: h * 0.02,
-              ),
-              Text(
-                currentUser == null ? "" : email.toString(),
-                style: GoogleFonts.ubuntu(color: Colors.black, fontSize: 18),
-              ),
+
+              // Text(
+              //   //   currentUser == null ? "" : name.toString(),
+              //   "sabin",
+              //   style: GoogleFonts.ubuntu(
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 20,
+              //       color: Colors.black),
+              // ),
+              // SizedBox(
+              //   height: h * 0.02,
+              // ),
+              // Text(
+              //   // currentUser == null ? "" : email.toString(),
+              //   "ssabin",
+              //   style: GoogleFonts.ubuntu(color: Colors.black, fontSize: 18),
+              // ),
               SizedBox(
                 height: h * 0.01,
               ),
@@ -175,26 +166,28 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                 child: GestureDetector(
                   onTap: () => AuthController().logOutUser(),
                   child: Container(
-                      padding: const EdgeInsets.all(14.0),
-                      decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              IconlyBold.logout,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                            Text(
-                              'Logout',
-                              style: GoogleFonts.ubuntuCondensed(
-                                  fontSize: 15.0, color: Colors.white),
-                            )
-                          ])),
+                    padding: const EdgeInsets.all(14.0),
+                    decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(100)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          IconlyBold.logout,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          'Logout',
+                          style: GoogleFonts.ubuntuCondensed(
+                              fontSize: 15.0, color: Colors.white),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
               Text(

@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:project_samaya/model/prority_alg.dart';
 import 'package:project_samaya/view/admin_department/screen/employee_detail_list/add_employee.dart';
 
 import 'employee_detail_list/asign_project.dart';
@@ -62,22 +63,22 @@ class AdminHomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         StreamBuilder(
-                            stream: FirebaseFirestore.instance
-                                .collection('Admin Details')
-                                .snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return Text(
-                                  'Welcome ${snapshot.data!.docs[0]['name']}',
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                );
-                              }
-                              return const Center(
-                                child: CircularProgressIndicator(),
+                          stream: FirebaseFirestore.instance
+                              .collection('Admin Details')
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(
+                                'Welcome ${snapshot.data!.docs[0]['name']}',
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
                               );
-                            }),
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        ),
                         const SizedBox(
                           height: 10,
                         ),
@@ -151,6 +152,7 @@ class AdminHomePage extends StatelessWidget {
                   topRight: Radius.circular(50),
                 ),
               ),
+              child: DatePriorityScreen(),
               //height: 200,
               width: double.infinity,
             ),

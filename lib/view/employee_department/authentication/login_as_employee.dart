@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_samaya/controller/auth_controller.dart';
+import 'package:project_samaya/view/employee_department/bottom_nav_bar.dart';
 import 'package:project_samaya/view/employee_department/controller/employee_login_controller.dart';
 
 class EmployeeLoginPage extends StatelessWidget {
@@ -14,6 +15,11 @@ class EmployeeLoginPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        leading:
+            GestureDetector(onTap: Get.back, child: Icon(Icons.arrow_back_ios)),
+        backgroundColor: Colors.blue.shade700,
+      ),
       body: Obx(
         () => SingleChildScrollView(
           child: Column(
@@ -141,6 +147,8 @@ class EmployeeLoginPage extends StatelessWidget {
                         AuthController.instance.loginEmployee(
                             employeeController.userEmail.text.trim(),
                             employeeController.userPassword.text.trim());
+
+                        //  Get.to(NavigationPage());
                       },
                       child: Container(
                         width: width * 0.8,

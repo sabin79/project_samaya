@@ -15,6 +15,7 @@ class NewTaskController extends GetxController {
   TextEditingController description = TextEditingController();
   TextEditingController repeat = TextEditingController();
   List<String> selected = [];
+  List<String> employeename = [];
   void setSelected(value) {
     selected = [value];
   }
@@ -25,9 +26,11 @@ class NewTaskController extends GetxController {
         initialDate: selectedDate.value,
         firstDate: DateTime(2000),
         lastDate: DateTime(2027));
+    print(pickedDate);
     if (pickedDate != null && pickedDate != selectedDate.value) {
       selectedDate.value = pickedDate;
       endDate.text = DateFormat.yMd().format(selectedDate.value);
+      print(endDate.text);
     }
   }
 

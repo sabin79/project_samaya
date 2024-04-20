@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_samaya/view/admin_department/controller/add_user-controller.dart';
 import 'package:project_samaya/view/admin_department/controller/employee_register_controller.dart';
 import 'package:project_samaya/view/admin_department/screen/admin_panel.dart';
+import 'package:project_samaya/view/admin_department/screen/bottom_nav_bar.dart';
 
 import 'package:project_samaya/widgets/input_field.dart';
 
@@ -222,7 +223,7 @@ class _AddUserState extends State<AddUser> {
                           }
                           employeeController.formKey.currentState!.save();
 
-                          Get.to(const AdminHomePage());
+                          Get.to(const AdminNavBar());
                           final Map<String, dynamic> EmployeeDetails = {
                             'uid': FirebaseAuth.instance.currentUser != null
                                 ? FirebaseAuth.instance.currentUser!.uid

@@ -6,8 +6,8 @@ import 'controller/bottom_nav_controller.dart';
 import 'screens/home_page.dart';
 import 'screens/profile_page.dart';
 
-class NavigationPage extends StatelessWidget {
-  const NavigationPage({super.key});
+class EmployeeNavBar extends StatelessWidget {
+  const EmployeeNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {

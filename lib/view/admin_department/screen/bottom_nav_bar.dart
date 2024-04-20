@@ -9,8 +9,8 @@ import 'package:project_samaya/view/admin_department/screen/employee_detail_list
 
 import 'task_detail/subtask_tab.dart';
 
-class BottomNavBarpage extends StatelessWidget {
-  const BottomNavBarpage({super.key});
+class AdminNavBar extends StatelessWidget {
+  const AdminNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
