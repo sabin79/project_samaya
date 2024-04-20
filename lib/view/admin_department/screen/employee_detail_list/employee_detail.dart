@@ -38,13 +38,13 @@ class EmployeeDetailPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
+                                color: Colors.grey.withOpacity(0.2),
                               )
                             ]),
                         child: ListTile(
                           onTap: () {
-                            Navigator.pop(context,
-                                snapshot.data!.docs[index]['department']);
+                            Navigator.pop(
+                                context, snapshot.data!.docs[index]['name']);
                           },
                           // leading: Text(snapshot.data!.docs[index]['name']),
                           title: Text(snapshot.data!.docs[index]['name']),

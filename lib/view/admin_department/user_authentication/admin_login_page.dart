@@ -17,6 +17,11 @@ class UserLoginPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        leading:
+            GestureDetector(onTap: Get.back, child: Icon(Icons.arrow_back_ios)),
+        backgroundColor: Colors.blue.shade700,
+      ),
       body: Obx(
         () => SingleChildScrollView(
           child: Column(

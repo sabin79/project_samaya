@@ -49,6 +49,11 @@ class _UserRegistrationPageState extends State<UserRegistrationPage> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        leading:
+            GestureDetector(onTap: Get.back, child: Icon(Icons.arrow_back_ios)),
+        backgroundColor: Colors.blue.shade700,
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: registerController.formKey,
