@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:project_samaya/view/employee_department/screens/task/task_overview_page.dart';
 import '../../view/admin_department/screen/task_detail/subtask_tile.dart';
 
-class AllTasks extends StatelessWidget {
-  const AllTasks({super.key});
+class ExpiredTasks extends StatelessWidget {
+  const ExpiredTasks({super.key});
 
   @override
   Widget build(BuildContext context) {

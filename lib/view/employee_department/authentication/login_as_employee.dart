@@ -148,7 +148,7 @@ class EmployeeLoginPage extends StatelessWidget {
                             employeeController.userEmail.text.trim(),
                             employeeController.userPassword.text.trim());
 
-                        //  Get.to(NavigationPage());
+                        Get.to(EmployeeNavBar());
                       },
                       child: Container(
                         width: width * 0.8,

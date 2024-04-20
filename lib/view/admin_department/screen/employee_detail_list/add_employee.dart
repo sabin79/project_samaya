@@ -172,23 +172,6 @@ class _AddUserState extends State<AddUser> {
                 const SizedBox(
                   height: 12,
                 ),
-                // DropdownButtonFormField(
-                //   decoration: InputDecoration(
-                //     enabledBorder: OutlineInputBorder(
-                //       borderRadius: BorderRadius.circular(10),
-                //     ),
-                //   ),
-                //   onChanged: (newvalue) {
-                //     employeeController.setSelected(newvalue.toString());
-                //   },
-                //   items: dropDownItems.map((listitem) {
-                //     return DropdownMenuItem<String>(
-                //       value: listitem.toString(),
-                //       child: Text(listitem),
-                //     );
-                //   }).toList(),
-                // ),
-
                 DropdownButtonFormField(
                   onChanged: (newvalue) {
                     //  selectedRepeat = newvalue.toString();
@@ -238,14 +221,6 @@ class _AddUserState extends State<AddUser> {
                               .catchError((e) {
                             print(e);
                           });
-
-                          // final employeedb = EmployeeModel(
-                          //   fullname: employeeController.userName.text,
-                          //   email: employeeController.userEmail.text,
-                          //   password: employeeController.userPassword.text,
-                          //   department: employeeController.selected,
-                          // );
-                          // employeeController.createEmployee(employeedb);
                         },
                         child: const Text('Add User')),
                   ],

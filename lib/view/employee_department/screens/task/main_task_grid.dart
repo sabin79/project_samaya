@@ -17,7 +17,7 @@ class _TaskGridState extends State<TaskGrid> {
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.38,
+          height: MediaQuery.of(context).size.height * 0.35,
           child: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Samaya Task Details')

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class NewTaskController extends GetxController {
-  final formkey = GlobalKey<FormState>();
+  final newTaskFormkey = GlobalKey<FormState>();
   var selectedDate = DateTime.now().obs;
   var selectedTime = TimeOfDay.now().obs;
   DateTime _selectedDate = DateTime.now();

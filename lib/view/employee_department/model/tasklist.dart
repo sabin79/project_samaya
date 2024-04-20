@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_samaya/model/task_model.dart';
 
-class DatePriorityScreen extends StatefulWidget {
-  const DatePriorityScreen({super.key});
+class TaskListScreen extends StatefulWidget {
+  const TaskListScreen({super.key});
 
   @override
-  State<DatePriorityScreen> createState() => _DatePriorityScreenState();
+  State<TaskListScreen> createState() => _TaskListScreenState();
 }
 
-class _DatePriorityScreenState extends State<DatePriorityScreen> {
+class _TaskListScreenState extends State<TaskListScreen> {
   final DateTime originalDateTime = DateTime.now();
 
   final DateTime manualDateTime = DateTime(2024, 3, 23);
@@ -32,34 +32,45 @@ class _DatePriorityScreenState extends State<DatePriorityScreen> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<MainTaskModel> data = [];
-                  snapshot.data?.docs.forEach((element) {
-                    data.add(MainTaskModel(
-                      ChooseTime: element['Choosetime'],
-                      Description: element['Description'],
-                      enddate: DateTime(
-                        int.parse(element['enddate'].toString().split('/')[2]),
-                        int.parse(element['enddate'].toString().split('/')[0]),
-                        int.parse(element['enddate'].toString().split('/')[1]),
-                      ),
-                      employee: element.data()['employee'] == null
-                          ? []
-                          : List.from(
-                              element['employee'].map((e) => e.toString())),
-                      tag: List.from(element['tag'].map((e) => e.toString())),
-                      task: element['task'],
-                      uid: element['uid'],
-                    ));
-                  });
+                  snapshot.data?.docs.forEach(
+                    (element) {
+                      data.add(
+                        MainTaskModel(
+                          ChooseTime: element['Choosetime'],
+                          Description: element['Description'],
+                          enddate: DateTime(
+                            int.parse(
+                                element['enddate'].toString().split('/')[2]),
+                            int.parse(
+                                element['enddate'].toString().split('/')[0]),
+                            int.parse(
+                                element['enddate'].toString().split('/')[1]),
+                          ),
+                          employee: element.data()['employee'] == null
+                              ? []
+                              : List.from(
+                                  element['employee'].map((e) => e.toString())),
+                          tag: List.from(
+                              element['tag'].map((e) => e.toString())),
+                          task: element['task'],
+                          uid: element['uid'],
+                        ),
+                      );
+                    },
+                  );
                   List<MainTaskModel> priorityData = [];
 
-                  data.forEach((element) {
-                    final date2 = DateTime.now();
-                    final difference =
-                        date2.difference(element.enddate!).inDays;
-                    if ((difference * -1) < 30 && (difference * -1) > 0) {
-                      priorityData.add(element);
-                    }
-                  });
+                  data.forEach(
+                    (element) {
+                      final date2 = DateTime.now();
+                      final difference =
+                          date2.difference(element.enddate!).inDays;
+                      if ((difference * -1) < 100000000 &&
+                          (difference * -1) > 0) {
+                        priorityData.add(element);
+                      }
+                    },
+                  );
 
                   priorityData.sort((a, b) => a.enddate!.compareTo(b.enddate!));
 

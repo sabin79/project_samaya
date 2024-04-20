@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:project_samaya/view/admin_department/screen/task_detail/subtask_tile.dart';
 
 import '../../view/employee_department/screens/task/task_overview_page.dart';
@@ -14,32 +14,6 @@ class CompletedTasks extends StatelessWidget {
     return Expanded(
       child: Container(
         color: Colors.white,
-        // child: ListView(
-        //   children: [
-        //     TaskTile(
-        //       taskName: 'Meeting about',
-        //       endTime: DateTime(
-        //         2024,
-        //         7,
-        //         23,
-        //       ),
-        //     ),
-        //     TaskTile(
-        //       taskName: 'Meeting with the client',
-        //       endTime: DateTime(2023, 7, 23, 10, 00),
-        //     ),
-        //     TaskTile(
-        //       taskName: 'Code the interface',
-        //       endTime: DateTime(
-        //         2023,
-        //         7,
-        //         23,
-        //       ),
-        //     ),
-        //     //  TaskOverviewCard(),
-        //   ],
-        // ),
-
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Samaya Task Details')

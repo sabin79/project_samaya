@@ -38,7 +38,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
           ),
           Expanded(
               child: TabBarView(controller: tabController, children: const [
-            AllTasks(),
+            ExpiredTasks(),
             CompletedTasks(),
           ]))
         ],

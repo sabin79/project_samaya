@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:project_samaya/view/admin_department/screen/task_detail/subtask_tab.dart';
-import 'package:project_samaya/view/employee_department/screens/task/main_task_grid.dart';
 import 'package:project_samaya/utils/task_pages/all_task.dart';
+import 'package:project_samaya/view/admin_department/screen/task_detail/subtask_tab.dart';
+import 'package:project_samaya/view/employee_department/model/employee_tab.dart';
 
-class HomePage extends StatelessWidget {
+import 'package:project_samaya/view/employee_department/model/tasklist.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     String todayDate = DateFormat.MMMEd().format(now);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text(
+          "Employee Panel",
+          style: TextStyle(color: Colors.white, fontSize: 26),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 42, 97, 238),
+      ),
       backgroundColor: const Color.fromARGB(255, 42, 97, 238),
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: const Color.fromARGB(255, 78, 128, 255),
@@ -24,7 +38,7 @@ class HomePage extends StatelessWidget {
       //     size: 35,
       //   ),
       // ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: SafeArea(
         child: Column(
           children: [
@@ -53,30 +67,21 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color.fromARGB(255, 78, 128, 255)),
-                    child: const Padding(
-                      padding: EdgeInsets.all(15),
-                      child: Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            const TaskGrid(),
+
+            //   EmployeeTab(),
+            const TaskListScreen(),
+            // const TaskGrid(),
             const SizedBox(
               height: 10,
             ),
-            //     const TaskTabs(),
-            const AllTasks(),
+            //   const TaskDetailPage(),
+            //  const ExpiredTasks(),
           ],
         ),
       ),

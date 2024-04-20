@@ -33,38 +33,39 @@ class AuthController extends GetxController {
 
     //EVER FUNCTION IS USED TO NOTIFY THE APP CORRESPONDING CHANGES FROM THE FIREBASE
 
-    ever(_admin, _adminScreen);
+    // ever(_admin, _adminScreen);
+    ever(_admin, _initialScreen);
   }
 
-  // _initialScreen(User? user) {
-  //   if (user == null) {
-  //     Get.offAll(() => const AdminEmployeeSwitchScreen());
-  //   } else {
-  //     Get.offAll(() => const EmployeeNavBar());
-  //   }
-  // }
-
-  _adminScreen(User? admin) async {
-    bool is_admin = false;
-
-    if (admin == null) {
+  _initialScreen(User? user) {
+    if (user == null) {
       Get.offAll(() => const AdminEmployeeSwitchScreen());
     } else {
-      DocumentSnapshot<Map<String, dynamic>> fdata =
-          await firestore.collection('Admin Details').doc().get();
-      fdata.data()?.forEach((key, value) {
-        if (key == admin.uid) {
-          is_admin = true;
-        }
-      });
-
-      if (is_admin) {
-        Get.offAll(() => const EmployeeNavBar());
-      } else {
-        Get.offAll(() => const AdminNavBar());
-      }
+      Get.offAll(() => const AdminNavBar());
     }
   }
+
+  // _adminScreen(User? admin) async {
+  //   bool is_admin = false;
+
+  //   if (admin == null) {
+  //     Get.offAll(() => const AdminEmployeeSwitchScreen());
+  //   } else {
+  //     DocumentSnapshot<Map<String, dynamic>> fdata =
+  //         await firestore.collection('Admin Details').doc().get();
+  //     fdata.data()?.forEach((key, value) {
+  //       if (key == admin.uid) {
+  //         is_admin = true;
+  //       }
+  //     });
+
+  //     if (is_admin) {
+  //       Get.offAll(() => const AdminNavBar());
+  //     } else {
+  //       Get.offAll(() => const AdminNavBar());
+  //     }
+  //   }
+  // }
 
 //   _initialScreen(User? user) {
 //   if (user == null) {

@@ -10,15 +10,14 @@ class EmployeeDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Employee Details',
+          'Employee List',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
       body: Column(children: [
-        const SizedBox(height: 10),
-        const Text("Employee List", style: TextStyle(fontSize: 20)),
+        const SizedBox(height: 20),
         Expanded(
           child: StreamBuilder(
             stream: FirebaseFirestore.instance
@@ -32,15 +31,26 @@ class EmployeeDetailPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       var departmentList = List<dynamic>.from(
                           snapshot.data!.docs[index]['department']);
-                      return ListTile(
-                        onTap: () {
-                          Navigator.pop(
-                              context, snapshot.data!.docs[index]['name']);
-                        },
-                        // leading: Text(snapshot.data!.docs[index]['name']),
-                        title: Text(snapshot.data!.docs[index]['name']),
-                        subtitle: Text(snapshot.data!.docs[index]['email']),
-                        leading: Text(departmentList.join(', ')),
+                      return Container(
+                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                              )
+                            ]),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.pop(context,
+                                snapshot.data!.docs[index]['department']);
+                          },
+                          // leading: Text(snapshot.data!.docs[index]['name']),
+                          title: Text(snapshot.data!.docs[index]['name']),
+                          subtitle: Text(snapshot.data!.docs[index]['email']),
+                          leading: Text(departmentList.join(', ')),
+                        ),
                       );
                     },
                   );

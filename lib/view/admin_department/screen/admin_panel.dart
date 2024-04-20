@@ -47,14 +47,14 @@ class AdminHomePage extends StatelessWidget {
             height: 10,
           ),
           Container(
-            height: 300,
+            height: 250,
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50))),
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.only(top: 12, right: 35, left: 30.0),
+              padding: const EdgeInsets.only(top: 12, right: 12, left: 12.0),
               child: Column(children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +118,7 @@ class AdminHomePage extends StatelessWidget {
                         const Text('Add User')
                       ],
                     ),
-                    const SizedBox(width: 45),
+                    const SizedBox(width: 25),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -143,18 +143,25 @@ class AdminHomePage extends StatelessWidget {
               ]),
             ),
           ),
+          Text(
+            'Protiorized Tasks',
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+          ),
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 78, 128, 255).withOpacity(0.9),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 78, 128, 255).withOpacity(0.9),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                    topRight: Radius.circular(50),
+                  ),
                 ),
+                child: DatePriorityScreen(),
+                //height: 200,
+                width: double.infinity,
               ),
-              child: DatePriorityScreen(),
-              //height: 200,
-              width: double.infinity,
             ),
           ),
         ],

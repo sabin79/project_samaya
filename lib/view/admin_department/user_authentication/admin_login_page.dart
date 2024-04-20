@@ -117,18 +117,18 @@ class UserLoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 22,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Forgot Password?',
-                          style: GoogleFonts.ubuntuMono(
-                              color: Colors.blue.shade600,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Text(
+                    //       'Forgot Password?',
+                    //       style: GoogleFonts.ubuntuMono(
+                    //           color: Colors.blue.shade600,
+                    //           fontWeight: FontWeight.bold,
+                    //           fontSize: 15),
+                    //     ),
+                    //   ],
+                    // ),
                     const SizedBox(
                       height: 30,
                     ),
@@ -161,68 +161,68 @@ class UserLoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    Row(children: <Widget>[
-                      const Expanded(
-                          child: Divider(
-                        thickness: 1.5,
-                      )),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "Or Continue With",
-                        style: GoogleFonts.ubuntuCondensed(
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      const Expanded(
-                          child: Divider(
-                        thickness: 1.5,
-                      )),
-                    ]),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.grey.shade300)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15.0, horizontal: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                // SvgPicture.asset(
-                                //   'assets/google.svg',
-                                //   height: height * 0.03,
-                                // ),
-                                const SizedBox(
-                                  width: 8.0,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(() => const AdminHomePage());
-                                  },
-                                  child: Text(
-                                    'Google',
-                                    style: GoogleFonts.ubuntu(),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.06,
-                    ),
+                    // Row(children: <Widget>[
+                    //   const Expanded(
+                    //       child: Divider(
+                    //     thickness: 1.5,
+                    //   )),
+                    //   const SizedBox(
+                    //     width: 20,
+                    //   ),
+                    //   Text(
+                    //     "Or Continue With",
+                    //     style: GoogleFonts.ubuntuCondensed(
+                    //         fontWeight: FontWeight.bold),
+                    //   ),
+                    //   const SizedBox(
+                    //     width: 18,
+                    //   ),
+                    //   const Expanded(
+                    //       child: Divider(
+                    //     thickness: 1.5,
+                    //   )),
+                    // ]),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: [
+                    //     Container(
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(10),
+                    //           border: Border.all(color: Colors.grey.shade300)),
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.symmetric(
+                    //             vertical: 15.0, horizontal: 20.0),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.center,
+                    //           children: [
+                    //             // SvgPicture.asset(
+                    //             //   'assets/google.svg',
+                    //             //   height: height * 0.03,
+                    //             // ),
+                    //             const SizedBox(
+                    //               width: 8.0,
+                    //             ),
+                    //             InkWell(
+                    //               onTap: () {
+                    //                 Get.to(() => const AdminHomePage());
+                    //               },
+                    //               child: Text(
+                    //                 'Google',
+                    //                 style: GoogleFonts.ubuntu(),
+                    //               ),
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: height * 0.06,
+                    // ),
                     RichText(
                         text: TextSpan(
                             text: "Don't have an account? ",

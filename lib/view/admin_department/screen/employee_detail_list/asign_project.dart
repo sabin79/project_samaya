@@ -108,7 +108,7 @@ class _AddNewTaskState extends State<AssignProjectPage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Form(
-              key: newTaskController.formkey,
+              key: newTaskController.newTaskFormkey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -195,7 +195,6 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                           decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 78, 128, 255),
                             borderRadius: BorderRadius.circular(12),
-                            //border: Border.all(color: Colors.black, width: 1),
                           ),
                           child: const Icon(
                             Icons.add,
@@ -315,11 +314,12 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                       ),
                     ),
                     onPressed: () {
-                      if (!newTaskController.formkey.currentState!.validate()) {
+                      if (!newTaskController.newTaskFormkey.currentState!
+                          .validate()) {
                         return;
                       }
 
-                      newTaskController.formkey.currentState!.save();
+                      newTaskController.newTaskFormkey.currentState!.save();
                       Get.to(const AdminNavBar());
                       print('here 1');
                       final Map<String, dynamic> samayaDetails = {
