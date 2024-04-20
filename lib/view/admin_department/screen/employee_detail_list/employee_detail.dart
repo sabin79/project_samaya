@@ -43,8 +43,8 @@ class EmployeeDetailPage extends StatelessWidget {
                             ]),
                         child: ListTile(
                           onTap: () {
-                            Navigator.pop(context,
-                                snapshot.data!.docs[index]['department']);
+                            Navigator.pop(
+                                context, snapshot.data!.docs[index]['name']);
                           },
                           // leading: Text(snapshot.data!.docs[index]['name']),
                           title: Text(snapshot.data!.docs[index]['name']),

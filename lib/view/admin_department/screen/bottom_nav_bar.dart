@@ -41,7 +41,7 @@ class AdminNavBar extends StatelessWidget {
                       ? Colors.blue
                       : Colors.grey.shade600,
                 ),
-                label: ''),
+                label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.task,
@@ -49,7 +49,7 @@ class AdminNavBar extends StatelessWidget {
                       ? Colors.blue
                       : Colors.grey.shade600,
                 ),
-                label: ''),
+                label: 'Tasks'),
             BottomNavigationBarItem(
                 icon: Icon(
                   IconlyBold.profile,

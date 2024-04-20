@@ -72,19 +72,28 @@ class _DatePriorityScreenState extends State<DatePriorityScreen> {
                             margin: const EdgeInsets.all(10),
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: DateTime.now()
+                                              .difference(
+                                                  priorityData[index].enddate!)
+                                              .inDays *
+                                          -1 >
+                                      3
+                                  ? Colors.white
+                                  : Colors.red.shade100,
                               borderRadius: BorderRadius.circular(35),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Center(
-                                  child: Text(
-                                    '${priorityData[index].task}',
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${priorityData[index].task}',
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
                                 ),
                                 Text(
                                   '${priorityData[index].Description}',
@@ -93,18 +102,21 @@ class _DatePriorityScreenState extends State<DatePriorityScreen> {
                                       fontWeight: FontWeight.w400),
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      DateFormat.yMMMEd()
-                                          .format(priorityData[index].enddate!),
+                                      ('Due Date : ${DateFormat.yMMMEd().format(priorityData[index].enddate!)}'),
                                       style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400),
                                     ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
                                     Text(
-                                        'Due: ${DateTime.now().difference(priorityData[index].enddate!).inDays * -1}')
+                                        'Remaning Days : ${DateTime.now().difference(priorityData[index].enddate!).inDays * -1} ')
                                   ],
                                 ),
                               ],
