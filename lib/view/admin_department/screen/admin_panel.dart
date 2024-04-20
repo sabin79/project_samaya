@@ -27,19 +27,19 @@ class AdminHomePage extends StatelessWidget {
         elevation: 0,
         backgroundColor:
             const Color.fromARGB(255, 78, 128, 255).withOpacity(0.9),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey.withOpacity(0.5),
-              radius: 20,
-              child: const Icon(
-                Icons.notifications_sharp,
-                color: Colors.white,
-              ),
-            ),
-          )
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: 10.0),
+        //     child: CircleAvatar(
+        //       backgroundColor: Colors.grey.withOpacity(0.5),
+        //       radius: 20,
+        //       child: const Icon(
+        //         Icons.notifications_sharp,
+        //         color: Colors.white,
+        //       ),
+        //     ),
+        //   )
+        // ],
       ),
       body: Column(
         children: [
@@ -135,7 +135,7 @@ class AdminHomePage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        const Text('Add Project')
+                        const Text('Add Task')
                       ],
                     ),
                   ],
