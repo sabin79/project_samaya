@@ -79,7 +79,8 @@ class _TaskTileState extends State<TaskTile> {
                                     ),
                                     Text(
                                       DateFormat.yMMMEd()
-                                          .format(widget.endDate),
+                                          .format(widget.endDate)
+                                          .toString(),
                                     ),
                                   ],
                                 ),

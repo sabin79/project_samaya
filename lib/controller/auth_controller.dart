@@ -33,8 +33,8 @@ class AuthController extends GetxController {
 
     //EVER FUNCTION IS USED TO NOTIFY THE APP CORRESPONDING CHANGES FROM THE FIREBASE
 
-    ever(_admin, _adminScreen);
-    //  ever(_admin, _initialScreen);
+    // ever(_admin, _adminScreen);
+    ever(_admin, _initialScreen);
   }
 
   _initialScreen(User? user) {
@@ -89,7 +89,7 @@ class AuthController extends GetxController {
         if (is_admin) {
           Get.offAll(() => const AdminNavBar());
         } else {
-          Get.offAll(() => const AdminNavBar());
+          Get.offAll(() => const EmployeeNavBar());
         }
       }
     } catch (e) {

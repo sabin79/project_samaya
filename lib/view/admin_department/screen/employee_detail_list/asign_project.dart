@@ -333,15 +333,15 @@ class _AddNewTaskState extends State<AssignProjectPage> {
                         'Description': newTaskController.description.text,
                         "employee": newTaskController.employeename,
                       };
-                      newTaskController.title.clear();
-                      newTaskController.selected.clear();
-                      newTaskController.endDate.clear();
-                      newTaskController.endTime.clear();
-                      newTaskController.description.clear();
-                      newTaskController.employeename.clear();
 
                       print('here 2');
                       addData(samayaDetails).then((result) {
+                        newTaskController.title.clear();
+                        newTaskController.selected.clear();
+                        newTaskController.endDate.clear();
+                        newTaskController.endTime.clear();
+                        newTaskController.description.clear();
+                        newTaskController.employeename.clear();
                         print('here 3');
                         dialogTrigger(context);
                         print('here 4');

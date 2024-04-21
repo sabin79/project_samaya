@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
+import 'package:project_samaya/model/task_model.dart';
 
 class TaskOverviewPage extends StatelessWidget {
-  const TaskOverviewPage({super.key});
+  const TaskOverviewPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     var data = Get.arguments;
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 

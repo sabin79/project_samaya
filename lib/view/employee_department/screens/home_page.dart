@@ -28,12 +28,12 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 42, 97, 238),
       ),
-      backgroundColor: const Color.fromARGB(255, 42, 97, 238),
+      // backgroundColor: const Color.fromARGB(255, 42, 97, 238),
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: const Color.fromARGB(255, 78, 128, 255),
       //   onPressed: (() => Get.to(const AddNewTask())),
       //   child: const Icon(
-      //     IconlyBold.paper_plus,
+      //     IconlyBold.paper_plus,zxcvbnm
       //     color: Colors.white,
       //     size: 35,
       //   ),
